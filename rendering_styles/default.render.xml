@@ -3028,6 +3028,17 @@
 				<case tag="boundary" value="protected_area" order="9">
 					<apply_if moreDetailed="false" maxzoom="13" order="-1"/>
 					<apply_if maxzoom="12" additional="nr_high_density=yes" order="-1"/>
+					<apply_if additional="protect_class=7" order="-1"/>
+					<apply_if additional="protect_class=97" order="-1"/>
+					<apply_if additional="protect_class=98" order="-1"/>
+					<apply_if additional="protect_class=99" order="-1"/>
+					<apply_if additional="protect_class=14" order="-1"/>
+					<apply_if additional="protect_class=15" order="-1"/>
+					<apply_if additional="protect_class=19" order="-1"/>
+					<apply_if additional="protect_class=21" order="-1"/>
+					<apply_if additional="protect_class=22" order="-1"/>
+					<apply_if additional="protect_class=24" order="-1"/>
+					<apply_if additional="protect_class=27" order="-1"/>
 				</case>
 				<case tag="boundary" value="national_park" order="9"/>
 				<case tag="boundary" value="forestry_compartment" order="9">
@@ -5864,11 +5875,11 @@
 				<case minzoom="17" tag="shop" value="games"/>
 				<case minzoom="17" tag="shop" value="garden_centre"/>
 				<case minzoom="17" tag="shop" value="gas"/>
-				<case minzoom="17" tag="shop" value="general"/>
 				<case minzoom="18" tag="shop" value="gift"/>
 				<case minzoom="17" tag="shop" value="glaziery"/>
 				<case minzoom="17" tag="shop" value="greengrocer"/>
 				<case minzoom="17" tag="shop" value="groundskeeping"/>
+				<case minzoom="17" tag="shop" value="general"/>
 				<case minzoom="17" tag="shop" value="hairdresser" textOrder="159"/>
 				<case minzoom="17" tag="shop" value="hairdresser_supply"/>
 				<case minzoom="17" tag="shop" value="hardware"/>
@@ -6083,6 +6094,7 @@
 						<case minzoom="16" tag="leisure" value="miniature_golf"/>
 						<case minzoom="16" tag="leisure" value="bowling_alley"/>
 						<case minzoom="18" tag="leisure" value="bandstand" textOrder="254"/>
+						<case minzoom="17" tag="amenity" value="music_venue"/>
 						<case minzoom="17" tag="leisure" value="trampoline_park"/>
 						<apply_if engine_v1="true" textDy="9"/>
 					</switch>
@@ -7263,6 +7275,7 @@
 					<case minzoom="17" tag="leisure" value="dance" icon="dance_floor"/>
 					<case minzoom="17" tag="leisure" value="escape_game" icon="escape_game"/>
 					<case minzoom="17" tag="leisure" value="bandstand" icon="bandstand"/>
+					<case minzoom="17" tag="amenity" value="music_venue" icon="music"/>
 					<case minzoom="16" tag="leisure" value="trampoline_park" icon="trampoline_park"/>
 					<apply_if nightMode="true" shield="green_round_night_shield" iconVisibleSize="55" intersectionSizeFactor="3.5"/>
 				</switch>
@@ -7706,7 +7719,7 @@
 					<case minzoom="17" tag="shop" value="garden_centre" icon="shop_garden_centre" iconVisibleSize="32"/>
 					<case minzoom="17" tag="shop" value="games" icon="games"/>
 					<case minzoom="17" tag="shop" value="gas" icon="gas"/>
-					<case minzoom="17" tag="shop" value="general" icon="shop_general"/>
+					<case minzoom="17" tag="shop" value="general" icon="shop_yes"/>
 					<case minzoom="17" tag="shop" value="gift" icon="shop_gift" iconVisibleSize="32"/>
 					<case minzoom="17" tag="shop" value="glaziery" icon="glaziery"/>
 					<case minzoom="17" tag="shop" value="greengrocer" icon="shop_greengrocer" iconVisibleSize="32"/>
