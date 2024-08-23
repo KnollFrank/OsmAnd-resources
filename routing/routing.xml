@@ -383,7 +383,7 @@
 		-->
 		<attribute name="derivedProfiles" value="default,truck,motorcycle"/>
 		<!-- MAIN parameter to approximate (35m good for custom recorded tracks)-->
-		<attribute name="minPointApproximation" value = "25"/>
+		<attribute name="minPointApproximation" value = "50"/>
 		<!-- don't search subsegments shorter than specified distance (also used to step back for car turns) -->
 		<attribute name="minStepApproximation" value = "100"/>
 		<!-- This parameter could speed up or slow down evaluation (better to make bigger for long routes and smaller for short)-->
@@ -425,6 +425,8 @@
 		<parameter id="height" name="Height" description="Maximum vehicle height to be permitted on the route" type="numeric" values="0,1.49,1.99,2.49,2.99,3.49,3.99,4.49,4.99,5.49,5.99,6.49,6.99,7.49" valueDescriptions="-,1.5m,2m,2.5m,3m,3.5m,4m,4.5m,5m,5.5m,6m,6.5m,7m,7.5m"/>
 		<parameter id="length" name="Length" description="Maximum vehicle length to be permitted on the route" type="numeric" values="0,4.99,5.99,6.49,6.99,7.99,8.99,9.49,9.99,10.99,11.99" valueDescriptions="-,5m,6m,6.5m,7m,8m,9m,9.5m,10m,11m,12m"/>
 		<parameter id="width" name="Width" description="Maximum vehicle width to be permitted on the route" type="numeric" values="0,1.49,1.99,2.29,2.49,2.99" valueDescriptions="-,1.5m,2m,2.3m,2.5m,3m"/>
+		<parameter id="maxaxleload" name="Max axle load" description="Maximum legal load weight limit per axle" type="numeric" values="0,1.49,2.99,3.49,4.99,7.49,9.99,11.99,14.99,19.99,29.99,39.99" valueDescriptions="-,1.5t,3t,3.5t,5t,7.5t,10t,12t,15t,20t,30t,40t" profiles="truck"/>
+		<parameter id="weightrating" name="Max weight at full load" description="Maximum permitted weight of the vehicle at full load" type="numeric" values="0,1.49,2.99,3.49,4.99,7.49,9.99,11.99,14.99,19.99,29.99,39.99" valueDescriptions="-,1.5t,3t,3.5t,5t,7.5t,10t,12t,15t,20t,30t,40t" profiles="truck"/>
 		<parameter id="motor_type" name="Motor type" description="For CO2 computation" type="numeric" values="0,1,2,3,4,5,6" valueDescriptions="-,Petrol,Diesel,Lpg,Gas,Electric,Hybrid"/>
 
 		<way attribute="access">
@@ -541,6 +543,8 @@
 			<select value="1"  t="vehicle" v="customers"/>
 
 			<select value="-1" t="highway" v="cycleway"/>
+			<select value="-1" t="highway" v="footway"/>
+			<select value="-1" t="highway" v="path"/>
 
 			<select value="-1" t="access" v="no"/>
 			<select value="-1" t="access" v="agricultural"/>
@@ -780,6 +784,7 @@
 			<select value="80" t="highway" v="secondary_link"/>
 			<select value="130" t="highway" v="tertiary"/>
 			<select value="130" t="highway" v="tertiary_link"/>
+			<select value="155" t="highway" v="unclassified"/>
 			<select value="167" t="highway" v="residential"/>
 			<select value="230" t="highway" v="service"/>
 			<select value="200"/>
@@ -889,8 +894,11 @@
 			<select value="0.1" t="smoothness" v="very_horrible"/>
 			<select value="0.05" t="smoothness" v="impassable"/>
 
-			
 			<if param="prefer_unpaved">
+				<if param="avoid_motorway">
+					<select value="0.05" t="highway" v="motorway"/>
+					<select value="0.05" t="highway" v="motorway_link"/>
+				</if>
 				<select value="1.5" t="tracktype" v="grade2"/>
 				<select value="1.4" t="tracktype" v="grade3"/>
 				<select value="1.3" t="tracktype" v="grade4"/>
@@ -907,7 +915,8 @@
 				<select value="1.3" t="surface" v="pebblestone"/>
 				<select value="1.0" t="surface" v="sand"/>
 
-				<select value="0.16" t="surface" v="asphalt"/>
+
+				<select value="0.1" t="surface" v="asphalt"/>
 				<select value="0.2" t="surface" v="chipseal"/>
 				<select value="0.1" t="surface" v="paved"/>
 				<select value="0.1" t="surface" v="concrete"/>
@@ -932,11 +941,11 @@
 				<select value="0.8" t="highway" v="service"/>
 				<select value="0.8" t="highway" v="living_street"/>
 			</if>
-
 			<if param="avoid_motorway">
-				<select value="0.1" t="highway" v="motorway"/>
-				<select value="0.1" t="highway" v="motorway_link"/>
+				<select value="0.05" t="highway" v="motorway"/>
+				<select value="0.05" t="highway" v="motorway_link"/>
 			</if>
+
 			<if param="avoid_tunnels">
 				<select value="0.02" t="tunnel" v="yes"/>
 			</if>
@@ -1118,6 +1127,7 @@
 				<select value="0" t="barrier" v="lift_gate"/>
 				<select value="0" t="barrier" v="swing_gate"/>
 				<select value="5" t="highway" v="traffic_signals"/>
+				<select value="0"  t="highway" v="give_way"/>
 			</if>
 			<select value="5"   t="barrier" v="cattle_grid"/>
 			<select value="300" t="barrier" v="border_control"/>
@@ -1299,6 +1309,8 @@
 			<select value="-1" t="oneway:vehicle" v="-1"/>
 			<select value="1" t="vehicle:backward" v="no"/>
 			<select value="-1" t="vehicle:forward" v="no"/>
+			<select value="1" t="bicycle:backward" v="no"/>
+			<select value="-1" t="bicycle:forward" v="no"/>
 
 			<select value="1" t="oneway" v="yes"/>
 			<select value="1" t="oneway" v="1"/>
@@ -1495,6 +1507,7 @@
 
 			<select value="0.1" t="bicycle" v="private"/>
 			<select value="0.2" t="bicycle" v="destination"/>
+			<select value="0.5" t="bicycle" v="use_sidepath"/>
 			<select value="0.3" t="highway" v="steps"/>
 	  		<!--	<select value="0.05" t="access" v="private"/>-->
 			<select value="0.3" t="indoor" v="yes"/>
@@ -1637,7 +1650,9 @@
 			<select value="3.2" t="cycleway" v="lane"/>
 			<select value="3.2" t="cycleway:both" v="lane"/>
 			<select value="3.2" t="cycleway" v="opposite_lane"/>
+			<select value="3.2" t="cycleway" v="opposite"/>
 			<select value="2.9" t="cycleway" v="share_busway"/>
+			<select value="2.9" t="cycleway" v="opposite_share_busway"/>
 			<select value="2.9" t="cycleway:both" v="share_busway"/>
 			<select value="3.3" t="cycleway" v="track"/>
 			<select value="3.3" t="cycleway:both" v="track"/>
@@ -1799,10 +1814,16 @@
 				<select value="-1" t="barrier" v="border_control"/>
 			</if>
 
+			<select value="0" t="red_turn:straight:bicycle" v="yes"/>
 			<if param="driving_style_safety">
 				<select value="16" t="crossing" v="traffic_signals"/>
 				<select value="16" t="crossing" v="island;traffic_signals"/>
 				<select value="27" t="highway" v="traffic_signals"/>
+			</if>
+			<if param="short_way">
+				<select value="3" t="crossing" v="traffic_signals"/>
+				<select value="2" t="crossing" v="island;traffic_signals"/>
+				<select value="3" t="highway" v="traffic_signals"/>
 			</if>
 			<!-- Lines above: These values are only a workaround. They apply until 
 			one issue is resolved: The triple counting of traffic lights at main
@@ -1811,7 +1832,7 @@
 			leads to routing errors. The above is only a compromise to minimize
 			those errors.-->
 			
-			<select value="9" t="crossing" v="traffic_signals"/>
+			<select value="6" t="crossing" v="traffic_signals"/>
 			<select value="1" t="crossing" v="uncontrolled"/>
 			<select value="3" t="crossing" v="unmarked"/>
 			<select value="1" t="crossing" v="island"/>
@@ -1824,7 +1845,7 @@
 			to apply any penalty. So it would make no sense to just apply a high
 			penalty on some cases. -->
 			<select value="5" t="crossing" v="island;traffic_signals"/>
-			<select value="13" t="highway" v="traffic_signals"/>
+			<select value="12" t="highway" v="traffic_signals"/>
 			<select value="55"  t="highway" v="steps"/>
 			<select value="15"  t="bicycle" v="dismount"/>
 			<select value="200" t="ford" v="yes"/>
@@ -2006,6 +2027,8 @@
 		<way attribute="oneway">
 			<select value="0" t="oneway:foot" v="no"/>
 			<select value="1" t="oneway:foot" v="yes"/>
+			<select value="1" t="foot:backward" v="no"/>
+			<select value="-1" t="foot:forward" v="no"/>
 			<select value="1" t="conveying" v="forward"/>
 			<select value="-1" t="conveying" v="backward"/>
 		</way>
@@ -2332,6 +2355,8 @@
 			<select value="1" t="oneway:vehicle" v="yes"/>
 			<select value="0" t="oneway:vehicle" v="no"/>
 			<select value="-1" t="oneway:vehicle" v="-1"/>
+			<select value="1" t="horse:backward" v="no"/>
+			<select value="-1" t="horse:forward" v="no"/>
 
 			<select value="1" t="oneway" v="yes"/>
 			<select value="1" t="oneway" v="1"/>
@@ -3111,6 +3136,55 @@
 
 			<select value="25" t="railway" v="crossing"/>
 			<select value="25" t="railway" v="level_crossing"/>
+		</point>
+
+		<point attribute="obstacle">
+			<select value="-1" t="moped" v="no"/>
+			<select value="0" t="moped" v="yes"/>
+			<select value="0" t="moped" v="permissive"/>
+			<select value="0" t="moped" v="designated"/>
+			<select value="0" t="moped" v="official"/>
+
+			<select value="-1" t="vehicle" v="no"/>
+			<select value="0" t="vehicle" v="agricultural"/>
+			<select value="0" t="vehicle" v="forestry"/>
+			<select value="0" t="vehicle" v="yes"/>
+			<select value="0" t="vehicle" v="permissive"/>
+			<select value="0" t="vehicle" v="designated"/>
+
+			<select value="-1" t="access" v="no"/>
+			<select value="0" t="access" v="agricultural"/>
+			<select value="0" t="access" v="forestry"/>
+			<select value="0" t="access" v="yes"/>
+			<select value="0" t="access" v="permissive"/>
+			<if param="allow_private">
+				<select value="180"  t="access" v="private"/>
+			</if>
+			<select value="-1" t="access" v="private"/>
+
+			<select value="30" t="barrier" v="chain"/>
+			<select value="40" t="barrier" v="debris"/>
+			<select value="10" t="barrier" v="jersey_barrier"/>
+			<select value="10" t="barrier" v="block"/>
+			<select value="-1" t="barrier" v="turnstile"/>
+			<select value="1" t="barrier" v="bus_trap"/>
+			<select value="1" t="barrier" v="sump_buster"/>
+
+			<select value="300" t="barrier" v="border_control"/>
+			<select value="300" t="barrier" v="bump_gate"/>
+			<select value="300" t="barrier" v="gate" />
+			<select value="1"   t="barrier" v="entrance"/>
+			<select value="1"   t="barrier" v="toll_booth"/>
+			<select value="300" t="barrier" v="lift_gate"/>
+			<select value="300" t="barrier" v="swing_gate"/>
+			<select value="1" t="barrier" v="height_restrictor"/>
+			<select value="1" t="barrier" v="coupure"/>
+			<select value="10" t="traffic_calming"/>
+
+			<select value="5"  t="highway" v="give_way"/>
+			<select value="15"  t="highway" v="stop"/>
+			<select value="15" t="highway" v="traffic_signals"/>
+			<select value="300" t="amenity" v="ferry_terminal"/>
 		</point>
 
 	</routingProfile>

@@ -35,7 +35,6 @@
 		type="string" possibleValues="red,orange,lightblue,blue,purple,translucent_red,translucent_orange,translucent_lightblue,translucent_blue,translucent_purple" defaultValueDescription="default"/>
 	<renderingProperty attr="currentTrackWidth" name="Current GPX width" description="Width of the currently recording track"
 		type="string" possibleValues="thin,medium,bold" defaultValueDescription="default"/>
-	<renderingProperty attr="contourColorScheme" name="Contour lines color scheme" description="Contour lines color scheme" type="string" possibleValues="white,yellow,green,light_brown,brown,dark_brown,red" defaultValueDescription="default"/>
 
 	<renderingProperty attr="legend" name="Legend" type="boolean" possibleValues="" category="ui_hidden"/>
 
@@ -753,61 +752,6 @@
 
 	<renderingConstant name="wetlandColorNight" value="#1b3238"/>
 
-	<renderingAttribute name="contourLineColor">
-		<case contourColorScheme="white" attrColorValue="#44ffffff"/>
-		<case contourColorScheme="yellow" attrColorValue="#44FFF29E"/>
-		<case contourColorScheme="green" attrColorValue="#4400ff00"/>
-		<case contourColorScheme="light_brown" attrColorValue="#119C5615">
-			<apply_if noPolygons="true" attrColorValue="#44FFEAD6"/>
-		</case>
-		<case contourColorScheme="brown" attrColorValue="#44bd6819">
-			<apply_if noPolygons="true" attrColorValue="#44C39F7D"/>
-		</case>
-		<case contourColorScheme="dark_brown" attrColorValue="#22522D0B">
-			<apply_if noPolygons="true" attrColorValue="#4437250B"/>
-		</case>
-		<case contourColorScheme="red" attrColorValue="#44ff0000"/>
-		<case attrColorValue="#44bd6819">
-			<apply_if noPolygons="true" attrColorValue="#44FFEAD6"/>
-		</case>
-	</renderingAttribute>
-	<renderingAttribute name="contourLineColor50m">
-		<case contourColorScheme="white" attrColorValue="#44ffffff"/>
-		<case contourColorScheme="yellow" attrColorValue="#44FFF29E"/>
-		<case contourColorScheme="green" attrColorValue="#4400ff00"/>
-		<case contourColorScheme="light_brown" attrColorValue="#339C5615">
-			<apply_if noPolygons="true" attrColorValue="#88FFEAD6"/>
-		</case>
-		<case contourColorScheme="brown" attrColorValue="#889C5615">
-			<apply_if noPolygons="true" attrColorValue="#88C39F7D"/>
-		</case>
-		<case contourColorScheme="dark_brown" attrColorValue="#55522D0B">
-			<apply_if noPolygons="true" attrColorValue="#8837250B"/>
-		</case>
-		<case contourColorScheme="red" attrColorValue="#44ff0000"/>
-		<case attrColorValue="#889C5615">
-			<apply_if noPolygons="true" attrColorValue="#88FFEAD6"/>
-		</case>
-	</renderingAttribute>
-	<renderingAttribute name="contourLineColor100m">
-		<case contourColorScheme="white" attrColorValue="#44ffffff"/>
-		<case contourColorScheme="yellow" attrColorValue="#44FFF29E"/>
-		<case contourColorScheme="green" attrColorValue="#4400ff00"/>
-		<case contourColorScheme="light_brown" attrColorValue="#559C5615">
-			<apply_if noPolygons="true" attrColorValue="#AAFFEAD6"/>
-		</case>
-		<case contourColorScheme="brown" attrColorValue="#aa9C5615">
-			<apply_if noPolygons="true" attrColorValue="#AAC39F7D"/>
-		</case>
-		<case contourColorScheme="dark_brown" attrColorValue="#66522D0B">
-			<apply_if noPolygons="true" attrColorValue="#aa37250B"/>
-		</case>
-		<case contourColorScheme="red" attrColorValue="#44ff0000"/>
-		<case attrColorValue="#aa9C5615">
-			<apply_if noPolygons="true" attrColorValue="#AAFFEAD6"/>
-		</case>
-	</renderingAttribute>
-
 	<renderingAttribute name="buildingColor">
 		<case minzoom="14" maxzoom="15" attrColorValue="#555555">
 			<apply_if nightMode="true" attrColorValue="#222222"/>
@@ -1037,43 +981,6 @@
 	<renderingAttribute name="attractionStrokeColor">
 		<case attrColorValue="#000000"/>
 	</renderingAttribute>
-
-<!--	<renderingAttribute name="contour10mTextColor">
-		<case contourColorScheme="white" attrColorValue="#F1F1F1"/>
-		<case contourColorScheme="yellow" attrColorValue="#F4E166"/>
-		<case contourColorScheme="green" attrColorValue="#00D400"/>
-		<case contourColorScheme="red" attrColorValue="#D40000"/>
-		<case attrColorValue="#777777">
-			<apply_if nightMode="true" attrColorValue="#999999"/>
-		</case>
-	</renderingAttribute>
-	<renderingAttribute name="contour20mTextColor">
-		<case contourColorScheme="white" attrColorValue="#F1F1F1"/>
-		<case contourColorScheme="yellow" attrColorValue="#F4E166"/>
-		<case contourColorScheme="green" attrColorValue="#00D400"/>
-		<case contourColorScheme="red" attrColorValue="#D40000"/>
-		<case attrColorValue="#666666">
-			<apply_if nightMode="true" attrColorValue="#a3a3a3"/>
-		</case>
-	</renderingAttribute>
-	<renderingAttribute name="contour50mTextColor">
-		<case contourColorScheme="white" attrColorValue="#ffffff"/>
-		<case contourColorScheme="yellow" attrColorValue="#FFF29E"/>
-		<case contourColorScheme="green" attrColorValue="#00ff00"/>
-		<case contourColorScheme="red" attrColorValue="#ff0000"/>
-		<case attrColorValue="#666666">
-			<apply_if nightMode="true" attrColorValue="#aaaaaa"/>
-		</case>
-	</renderingAttribute>
-	<renderingAttribute name="contour100mTextColor">
-		<case contourColorScheme="white" attrColorValue="#ffffff"/>
-		<case contourColorScheme="yellow" attrColorValue="#FFF29E"/>
-		<case contourColorScheme="green" attrColorValue="#00ff00"/>
-		<case contourColorScheme="red" attrColorValue="#ff0000"/>
-		<case attrColorValue="#444444">
-			<apply_if nightMode="true" attrColorValue="#BBBBBB"/>
-		</case>
-	</renderingAttribute>-->
 
 	<renderingConstant name="buildingTextHaloRadiusDay" value="2"/>
 
@@ -1544,6 +1451,217 @@
 	<renderingAttribute name="highwayLowLevelTextColor">
 		<case nightMode="true" attrColorValue="#efefef"/>
 		<case attrColorValue="#000000"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="surfaceUnpavedRouteDetailsColor">
+		<case attrColorValue="#cc9900"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceGrassPaverRouteDetailsColor">
+		<case attrColorValue="#a7bef8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceGrassRouteDetailsColor">
+		<case attrColorValue="#1fbe1f"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceSandRouteDetailsColor">
+		<case attrColorValue="#ffd700"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceGroundRouteDetailsColor">
+		<case attrColorValue="#cc9900"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceDirtRouteDetailsColor">
+		<case attrColorValue="#a9820f"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceMudRouteDetailsColor">
+		<case attrColorValue="#765902"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceSaltRouteDetailsColor">
+		<case attrColorValue="#7eded8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceSnowRouteDetailsColor">
+		<case attrColorValue="#9feeef"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceIceRouteDetailsColor">
+		<case attrColorValue="#9feeef"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceAsphaltRouteDetailsColor">
+		<case nightMode="true" attrColorValue="#eae6f3"/>
+		<case attrColorValue="#6f687e"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceConcreteRouteDetailsColor">
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfacePavedRouteDetailsColor">
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfacePavingStonesRouteDetailsColor">
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceSettRouteDetailsColor">
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceCobblestoneRouteDetailsColor">
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfacePebblestoneRouteDetailsColor">
+		<case nightMode="true" attrColorValue="#409ED2"/>
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceStoneRouteDetailsColor">
+		<case nightMode="true" attrColorValue="#409ED2"/>
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceMetalRouteDetailsColor">
+		<case nightMode="true" attrColorValue="#409ED2"/>
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceWoodRouteDetailsColor">
+		<case nightMode="true" attrColorValue="#409ED2"/>
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="surfaceGravelRouteDetailsColor">
+		<case nightMode="true" attrColorValue="#6093AC"/>
+		<case attrColorValue="#cbcbe8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceCompactedRouteDetailsColor">
+		<case nightMode="true" attrColorValue="#6093AC"/>
+		<case attrColorValue="#cbcbe8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceFineGravelRouteDetailsColor">
+		<case nightMode="true" attrColorValue="#6093AC"/>
+		<case attrColorValue="#cbcbe8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceUndefinedRouteDetailsColor">
+		<case attrColorValue="#e8e8e8"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="routeInfo_roadClass">
+		<case tag="highway" value="motorway" attrColorValue="$motorwayRoadColor" attrStringValue="highway_class_motorway"/>
+		<case tag="highway" value="motorway_link" attrColorValue="$motorwayRoadColor" attrStringValue="highway_class_motorway"/>
+		<case tag="highway" value="trunk"  attrColorValue="$trunkRoadColor" attrStringValue="highway_class_state_road"/>
+		<case tag="highway" value="trunk_link"  attrColorValue="$trunkRoadColor" attrStringValue="highway_class_state_road"/>
+		<case tag="highway" value="primary"  attrColorValue="$primaryRoadColor" attrStringValue="highway_class_state_road"/>
+		<case tag="highway" value="primary_link"  attrColorValue="$primaryRoadColor" attrStringValue="highway_class_state_road"/>
+		<case tag="highway" value="secondary" attrColorValue="$secondaryRoadColor" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="secondary_link" attrColorValue="$secondaryRoadColor" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="tertiary" attrColorValue="$tertiaryRoadColor" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="tertiary_link" attrColorValue="$tertiaryRoadColor" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="unclassified" attrColorValue="$unclassifiedRoadColor" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="residential" attrColorValue="#F1F1F1" attrStringValue="highway_class_street"/>
+		<case tag="highway" value="living_street" attrColorValue="$serviceRoadColor" attrStringValue="highway_class_street"/>
+		<case tag="highway" value="service" attrColorValue="$serviceRoadColor" attrStringValue="highway_class_service"/>
+		<case tag="highway" value="pedestrian" attrColorValue="$pedestrianRoadColor" attrStringValue="highway_class_footway"/>
+		<case tag="highway" value="road" attrColorValue="$roadRoadColor" attrStringValue="highway_class_undefined"/>
+		<case tag="highway" value="footway"  attrColorValue="$footwayColor" attrStringValue="highway_class_footway"/>
+		<case tag="highway" value="bridleway" attrColorValue="$bridlewayColor" attrStringValue="highway_class_bridleway"/>
+		<case tag="highway" value="steps" attrColorValue="$footwayColor" attrStringValue="highway_class_steps"/>
+		<case tag="highway" value="path" attrColorValue="$pathColor" attrStringValue="highway_class_path"/>
+		<case tag="highway" value="cycleway" attrColorValue="$cyclewayColor" attrStringValue="highway_class_cycleway"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="routeInfo_surface">
+		<case additional="surface=unpaved" attrColorValue="$surfaceUnpavedRouteDetailsColor" attrStringValue="surface_unpaved"/>
+		<case additional="surface=sand" attrColorValue="$surfaceSandRouteDetailsColor" attrStringValue="surface_sand"/>
+		<case additional="surface=grass" attrColorValue="$surfaceGrassRouteDetailsColor" attrStringValue="surface_grass"/>
+		<case additional="surface=grass_paver" attrColorValue="$surfaceGrassPaverRouteDetailsColor" attrStringValue="surface_grass_paver"/>
+		<case additional="surface=ground" attrColorValue="$surfaceGroundRouteDetailsColor" attrStringValue="surface_ground"/>
+		<case additional="surface=dirt" attrColorValue="$surfaceDirtRouteDetailsColor" attrStringValue="surface_dirt"/>
+		<case additional="surface=mud" attrColorValue="$surfaceMudRouteDetailsColor" attrStringValue="surface_mud"/>
+		<case additional="surface=ice" attrColorValue="$surfaceIceRouteDetailsColor" attrStringValue="surface_ice"/>
+		<case additional="surface=salt" attrColorValue="$surfaceSaltRouteDetailsColor" attrStringValue="surface_salt"/>
+		<case additional="surface=snow" attrColorValue="$surfaceSnowRouteDetailsColor" attrStringValue="surface_snow"/>
+
+		<case additional="surface=asphalt" attrColorValue="$surfaceAsphaltRouteDetailsColor" attrStringValue="surface_asphalt"/>
+		<case additional="surface=paved" attrColorValue="$surfacePavedRouteDetailsColor" attrStringValue="surface_paved"/>
+		<case additional="surface=chipseal" attrColorValue="$surfacePavedRouteDetailsColor" attrStringValue="surface_chipseal"/>
+		<case additional="surface=concrete" attrColorValue="$surfaceConcreteRouteDetailsColor" attrStringValue="surface_concrete"/>
+		<case additional="surface=sett" attrColorValue="$surfaceSettRouteDetailsColor" attrStringValue="surface_sett"/>
+		<case additional="surface=cobblestone" attrColorValue="$surfaceCobblestoneRouteDetailsColor" attrStringValue="surface_cobblestone"/>
+		<case additional="surface=paving_stones" attrColorValue="$surfacePavingStonesRouteDetailsColor" attrStringValue="surface_paving_stones"/>
+
+		<case additional="surface=pebblestone" attrColorValue="$surfacePebblestoneRouteDetailsColor" attrStringValue="surface_pebblestone"/>
+		<case additional="surface=stone" attrColorValue="$surfaceStoneRouteDetailsColor" attrStringValue="surface_stone"/>
+		<case additional="surface=metal" attrColorValue="$surfaceMetalRouteDetailsColor" attrStringValue="surface_metal"/>
+		<case additional="surface=wood" attrColorValue="$surfaceWoodRouteDetailsColor" attrStringValue="surface_wood"/>
+		<case additional="surface=gravel" attrColorValue="$surfaceGravelRouteDetailsColor" attrStringValue="surface_gravel"/>
+		<case additional="surface=fine_gravel" attrColorValue="$surfaceFineGravelRouteDetailsColor" attrStringValue="surface_fine_gravel"/>
+		<case additional="surface=compacted" attrColorValue="$surfaceCompactedRouteDetailsColor" attrStringValue="surface_compacted"/>
+		<case additional="surface=undefined" attrColorValue="$surfaceUndefinedRouteDetailsColor" attrStringValue="surface_undefined"/>
+
+		<case attrColorValue="$null"/>
+	</renderingAttribute>
+
+	<renderingConstant name="surfaceGradeExcellentRouteDetailsColor" value="#00d8ff"/>
+	<renderingConstant name="surfaceGradeGoodRouteDetailsColor" value="#7debff"/>
+	<renderingConstant name="surfaceGradeIntermediateRouteDetailsColor" value="#b1f3ff"/>
+	<renderingConstant name="surfaceGradeBadRouteDetailsColor" value="#febcbc"/>
+	<renderingConstant name="surfaceGradeVeryBadRouteDetailsColor" value="#fea9a9"/>
+	<renderingConstant name="surfaceGradeHorribleRouteDetailsColor" value="#ff7f7f"/>
+	<renderingConstant name="surfaceGradeVeryHorribleRouteDetailsColor" value="#fe5050"/>
+	<renderingConstant name="surfaceGradeImpassableRouteDetailsColor" value="#ff1111"/>
+
+	<renderingAttribute name="routeInfo_smoothness">
+		<case additional="smoothness=excellent" attrColorValue="$surfaceGradeExcellentRouteDetailsColor" attrStringValue="smoothness_excellent"/>
+		<case additional="smoothness=good" attrColorValue="$surfaceGradeGoodRouteDetailsColor" attrStringValue="smoothness_good"/>
+		<case additional="smoothness=intermediate" attrColorValue="$surfaceGradeIntermediateRouteDetailsColor" attrStringValue="smoothness_intermediate"/>
+		<case additional="smoothness=bad" attrColorValue="$surfaceGradeBadRouteDetailsColor" attrStringValue="smoothness_bad"/>
+		<case additional="smoothness=very_bad" attrColorValue="$surfaceGradeVeryBadRouteDetailsColor" attrStringValue="smoothness_very_bad"/>
+		<case additional="smoothness=horrible" attrColorValue="$surfaceGradeHorribleRouteDetailsColor" attrStringValue="smoothness_horrible"/>
+		<case additional="smoothness=very_horrible" attrColorValue="$surfaceGradeVeryHorribleRouteDetailsColor" attrStringValue="smoothness_very_horrible"/>
+		<case additional="smoothness=impassable" attrColorValue="$surfaceGradeImpassableRouteDetailsColor" attrStringValue="smoothness_impassable"/>
+		<case additional="smoothness=undefined" attrColorValue="#e8e8e8" attrStringValue="smoothness_undefined"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="routeInfo_steepness">
+		<case additional="steepness=-100_-20" attrColorValue="#028306" attrStringValue="-100_-20"/>
+		<case additional="steepness=-19_-16" attrColorValue="#2c8f1e" attrStringValue="-19_-16"/>
+		<case additional="steepness=-15_-12" attrColorValue="#559b36" attrStringValue="-15_-12"/>
+		<case additional="steepness=-11_-8" attrColorValue="#7fa74e" attrStringValue="-11_-8"/>
+		<case additional="steepness=-7_-4" attrColorValue="#aab467" attrStringValue="-7_-4"/>
+		<case additional="steepness=-3_0" attrColorValue="#d3c07f" attrStringValue="-3_0"/>
+		<case additional="steepness=1_4" attrColorValue="#ffcc99" attrStringValue="1_4"/>
+		<case additional="steepness=5_8" attrColorValue="#f2ad82" attrStringValue="5_8"/>
+		<case additional="steepness=9_12" attrColorValue="#e48e6a" attrStringValue="9_12"/>
+		<case additional="steepness=13_16" attrColorValue="#d76e53" attrStringValue="13_16"/>
+		<case additional="steepness=17_20" attrColorValue="#c94e3b" attrStringValue="17_20"/>
+		<case additional="steepness=21_100" attrColorValue="#bb2e23" attrStringValue="21_100"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="routeInfo_winter_ice_road">
+		<case additional="winter_road=yes" attrColorValue="#458FFF" attrStringValue="winter_road"/>
+		<case additional="ice_road=yes" attrColorValue="#7BB0FF" attrStringValue="ice_road"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="tracktypeGrade1Color">
+		<case attrColorValue="#628F59"/>
+	</renderingAttribute>
+	<renderingAttribute name="tracktypeGrade2Color">
+		<case attrColorValue="#BB628F59"/>
+	</renderingAttribute>
+	<renderingAttribute name="tracktypeGrade3Color">
+		<case attrColorValue="#88628F59"/>
+	</renderingAttribute>
+	<renderingAttribute name="tracktypeGrade4Color">
+		<case attrColorValue="#66628F59"/>
+	</renderingAttribute>
+	<renderingAttribute name="tracktypeGrade5Color">
+		<case attrColorValue="#44628F59"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="routeInfo_tracktype">
+		<case additional="tracktype=grade1" attrColorValue="$tracktypeGrade1Color" attrStringValue="tracktype_grade1"/>
+		<case additional="tracktype=grade2" attrColorValue="$tracktypeGrade2Color" attrStringValue="tracktype_grade2"/>
+		<case additional="tracktype=grade3" attrColorValue="$tracktypeGrade3Color" attrStringValue="tracktype_grade3"/>
+		<case additional="tracktype=grade4" attrColorValue="$tracktypeGrade4Color" attrStringValue="tracktype_grade4"/>
+		<case additional="tracktype=grade5" attrColorValue="$tracktypeGrade5Color" attrStringValue="tracktype_grade5"/>
+	</renderingAttribute>
+	<renderingAttribute name="routeInfo_horse_scale">
+		<case tag="horse_scale" value="common" attrColorValue="#008FEB" attrStringValue="horse_scale_common"/>
+		<case tag="horse_scale" value="demanding" attrColorValue="#007FD1" attrStringValue="horse_scale_demanding"/>
+		<case tag="horse_scale" value="difficult" attrColorValue="#0074BF" attrStringValue="horse_scale_difficult"/>
+		<case tag="horse_scale" value="critical" attrColorValue="#0065A6" attrStringValue="horse_scale_critical"/>
+		<case tag="horse_scale" value="dangerous" attrColorValue="#005A94" attrStringValue="horse_scale_dangerous"/>
+		<case tag="horse_scale" value="impossible" attrColorValue="#E94D00" attrStringValue="horse_scale_impossible"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="debugTextDisplayBBox">
@@ -2086,16 +2204,6 @@
 				<case tag="railway" value="station"/>
 				<case tag="public_transport" value="platform"/>
 				<case tag="boundary" value="" order="207"/>
-<!--				<case tag="contour" value="elevation" order="11">
-					<apply_if contourDensity="medium_w" additional="contourtype=5m" order="-1"/>
-					<apply_if contourDensity="medium_w" additional="contourtype=10m" order="-1"/>
-					<apply_if contourDensity="medium_w" additional="contourtype=50m" order="-1"/>
-					<apply_if contourDensity="low" additional="contourtype=5m" order="-1"/>
-					<apply_if contourDensity="low" additional="contourtype=10m" order="-1"/>
-					<apply_if contourDensity="low" additional="contourtype=20m" order="-1"/>
-					<apply_if contourDensity="low" additional="contourtype=20f" order="-1"/>
-					<apply_if contourDensity="low" additional="contourtype=40f" order="-1"/>
-				</case>-->
 				<case tag="lit" value="" order="12"/>
 			</switch>
 			<switch>
@@ -3053,12 +3161,13 @@
 			<case tag="highway" value="traffic_signals" nameTag="" textOrder="141"/>
 			<case tag="natural" value="sinkhole" nameTag=""/>
 			<case tag="waterway" value="rapids" nameTag="" textOnPath="true"/>
-			<case tag="ford" value="yes" textDy="7" nameTag="" nameTag2="depth"/>
-			<case tag="ford" value="yes" textDy="7" nameTag="depth"/>
-			<case tag="ford" value="stepping_stones" nameTag="" textDy="7"/>
 			<apply textSize="12" textDy="7" textColor="#222222" textHaloRadius="$textHaloRadius" textHaloColor="$defaultTextHaloColor" textWrapWidth="16" textMinDistance="10"/>
 			<apply_if nightMode="true" textColor="#cccccc"/>
 		</switch>
+		<case tag="ford" value="yes" nameTag="osmand_ford_stub" textColor="#00ff0000" textHaloColor="#01000000" textSize="11" textShield="ford_shield" icon="topo_ford" textMinDistance="1"/>
+		<case tag="ford" value="yes" textDy="7" nameTag="" nameTag2="depth" textOrder="208"/>
+		<case tag="ford" value="yes" textDy="7" nameTag="depth" textOrder="208"/>
+		<case tag="ford" value="stepping_stones" nameTag="" textDy="7"/>
 
 		<!-- Buildings -->
 		<switch textHaloRadius="$buildingTextHaloRadiusDay">
@@ -3112,32 +3221,6 @@
 				<apply_if nightMode="true" textColor="#cccccc"/>
 			</switch>
 		</switch>
-
-<!--		<switch tag="contour" value="elevation" nameTag="elevation" textOnPath="true" textBold="true" textOrder="255" textHaloColor="#bbffffff" textHaloRadius="1" intersectionMargin="20">
-			<case minzoom="13" contourLines="11"/>
-			<case minzoom="13" contourLines="12"/>
-			<case minzoom="13" contourLines="13"/>
-			<case minzoom="13" contourLines=""/>
-			<case minzoom="14" contourLines="14"/>
-			<case minzoom="15" contourLines="15"/>
-			<case minzoom="16" contourLines="16"/>
-			<apply>
-				<case minzoom="14" additional="contourtype=20m" textColor="$contour20mTextColor" textSize="11" textMinDistance="170"/>
-				<switch minzoom="15">
-					<case additional="contourtype=10m"/>
-					<case additional="contourtype=40f"/>
-					<apply textColor="$contour10mTextColor" textSize="10" textMinDistance="160"/>
-				</switch>
-				<switch>
-					<case additional="contourtype=100m" textSize="11"/>
-					<case additional="contourtype=1000f" textSize="12"/>
-					<case additional="contourtype=200f" textSize="11"/>
-					<apply textColor="$contour100mTextColor" textOrder="250" textMinDistance="250"/>
-				</switch>
-				<case additional="contourtype=50m" textColor="$contour50mTextColor" textSize="11" textMinDistance="200" textOrder="254"/>
-				<apply_if nightMode="true" textHaloRadius=":1" textHaloColor="#aa333333"/>
-			</apply>
-		</switch>-->
 
 		<switch>
 			<switch textColor="$peakVolcanoTextColor" textWrapWidth="25" textHaloColor="$peakVolcanoTextHaloColor" textHaloRadius="$textHaloRadius" textItalic="true" textBold="true">
@@ -3330,7 +3413,6 @@
 					<case minzoom="16" tag="tourism" value="caravan_site"/>
 					<case minzoom="16" tag="tourism" value="alpine_hut"/>
 					<case minzoom="16" tag="tourism" value="cabin"/>
-					<case minzoom="16" tag="tourism" value="lean_to"/>
 					<case minzoom="17" tag="tourism" value="apartment"/>
 					<case minzoom="17" tag="tourism" value="chalet"/>
 					<case minzoom="17" tag="tourism" value="guest_house"/>
@@ -3987,9 +4069,10 @@
 				<case minzoom="14" tag="tourism" value="chalet" icon="topo_chalet" shield="topo_chalet_shield"/>
 				<case minzoom="14" tag="tourism" value="alpine_hut" icon="topo_alpine_hut" shield="topo_alpine_hut_shield"/>
 				<case minzoom="14" tag="tourism" value="cabin" icon="topo_cabin" shield="topo_cabin_shield"/>
-				<case minzoom="14" tag="tourism" value="lean_to" icon="topo_lean_to" shield="topo_lean_to_shield"/>
 				<case minzoom="14" tag="tourism" value="wilderness_hut" icon="topo_wilderness_hut" shield="topo_wilderness_hut_shield"/>
-				<case minzoom="14" tag="amenity" value="shelter" icon="topo_shelter" shield="topo_shelter_shield"/>
+				<case minzoom="14" tag="amenity" value="shelter" icon="topo_shelter" shield="topo_shelter_shield">
+					<apply_if additional="shelter_type=lean_to" icon="topo_lean_to" shield="topo_lean_to_shield"/>
+				</case>
 				<apply_if minzoom="16" additional="drinking_water=yes" icon_2="topo_drinking_water_yes_map"/>
 				<apply_if minzoom="16" additional="drinking_water=no" icon_2="topo_drinking_water_no_map"/>
 			</switch>
@@ -6152,7 +6235,7 @@
 
 		<switch strokeWidth="1">
 			<case minzoom="14" tag="natural" value="cliff" color="#148c14" color_2="#005300"/>
-			<case minzoom="16" tag="natural" value="slope" color="$contourLineColor" color_2="$contourLineColor"/>
+			<case minzoom="16" tag="natural" value="slope" color="#44bd6819" color_2="#44bd6819"/>
 			<case minzoom="16" tag="natural" value="earth_bank" color="#88949494" color_2="#949494"/>
 			<apply maxzoom="15" strokeWidth_2="1.5:1.5" pathEffect_2="1_5"/>
 			<apply minzoom="16" maxzoom="16" strokeWidth_2="2:2" pathEffect_2="1_7"/>

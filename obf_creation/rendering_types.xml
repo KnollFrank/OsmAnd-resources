@@ -121,7 +121,7 @@
 	<entity_convert pattern="tag_transform" from_tag="oneway" from_value="reverse" to_tag1="oneway" to_value1="-1"/>
 	<type tag="oneway:bicycle" value="yes" minzoom="15" additional="true" poi="false"/>
 	<type tag="oneway:bicycle" value="no" minzoom="15" additional="true" poi="false"/>
-	<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="$france" if_less_tag1="maxspeed" if_less_value1="31" if_tag1="oneway" if_value1="yes" if_not_tag1="oneway:bicycle" if_not_value1="yes" to_tag1="highway" to_tag2="oneway:bicycle" to_value2="no"/>
+	<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="$france" if_less_tag1="maxspeed" if_less_value1="31" if_tag1="oneway" if_value1="yes" if_tag2="maxspeed" if_not_tag1="oneway:bicycle" if_not_value1="yes" to_tag1="highway" to_tag2="oneway:bicycle" to_value2="no" routing="yes"/>
 
 	<entity_convert pattern="tag_transform" from_tag="access:conditional" if_tag1="motor_vehicle" to_tag1="motor_vehicle:conditional" to_tag2="access:conditional"/>
 	<entity_convert pattern="tag_transform" from_tag="access:conditional" if_tag1="motorcycle" to_tag1="motorcycle:conditional" to_tag2="access:conditional"/>
@@ -214,7 +214,7 @@
 	<type tag="bicycle" value="designated" minzoom="12" additional="true" poi="false"/>
 	<entity_convert pattern="tag_transform" from_tag="foot" from_value="use_sidepath" if_not_tag1="sidewalk:left" if_not_value1="yes" if_not_tag2="sidewalk:right" if_not_value2="yes" to_tag1="foot" to_value1="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bicycle" from_value="official" to_tag1="bicycle" to_value1="designated" routing="no"/>
-	<entity_convert pattern="tag_transform" from_tag="bicycle" from_value="use_sidepath" to_tag1="bicycle" to_value1="no"/>
+<!--	<entity_convert pattern="tag_transform" from_tag="bicycle" from_value="use_sidepath" to_tag1="bicycle" to_value1="no"/>-->
 	<entity_convert pattern="tag_transform" from_tag="horse" from_value="use_sidepath" to_tag1="horse" to_value1="no"/>
 	<entity_convert pattern="tag_transform" from_tag="moped" from_value="use_sidepath" to_tag1="moped" to_value1="no"/>
 	<type tag="fee" value="yes" minzoom="13" additional="true" poi="false"/>
@@ -631,12 +631,17 @@
 	<type tag="maxweight" value="maxweight" minzoom="13" additional="text"/>
 	<type tag="maxaxleload" value="maxaxleload" minzoom="13" additional="text"/>
 
-	<type tag="layer" value="0" minzoom="10" additional="true" poi="false"/>
-	<type tag="layer" value="1" minzoom="10" additional="true" poi="false"/>
-	<type tag="layer" value="-1" minzoom="10" additional="true" poi="false"/>
-	<type tag="layer" value="2" minzoom="10" additional="true" poi="false"/>
-	<type tag="layer" value="-2" minzoom="10" additional="true" poi="false"/>
-	<type tag="layer" value="3" minzoom="10" additional="true" poi="false"/>
+	<type tag="layer" value="0" minzoom="10" additional="true" poi="false" propagateToNodes="border" propagateIfTag1="highway" propagateIfValue1="steps"/>
+	<type tag="layer" value="1" minzoom="10" additional="true" poi="false" propagateToNodes="border" propagateIfTag1="highway" propagateIfValue1="steps"/>
+	<type tag="layer" value="-1" minzoom="10" additional="true" poi="false" propagateToNodes="border" propagateIfTag1="highway" propagateIfValue1="steps"/>
+	<type tag="layer" value="2" minzoom="10" additional="true" poi="false" propagateToNodes="border" propagateIfTag1="highway" propagateIfValue1="steps"/>
+	<type tag="layer" value="-2" minzoom="10" additional="true" poi="false" propagateToNodes="border" propagateIfTag1="highway" propagateIfValue1="steps"/>
+	<type tag="layer" value="3" minzoom="10" additional="true" poi="false" propagateToNodes="border" propagateIfTag1="highway" propagateIfValue1="steps"/>
+	<type tag="layer" value="-3" minzoom="10" additional="true" poi="false" propagateToNodes="border" propagateIfTag1="highway" propagateIfValue1="steps"/> <!-- Used only for propagateToNodes -->
+	<type tag="layer" value="4" minzoom="10" additional="true" poi="false" propagateToNodes="border" propagateIfTag1="highway" propagateIfValue1="steps"/> <!-- Used only for propagateToNodes -->
+	<type tag="layer" value="-4" minzoom="10" additional="true" poi="false" propagateToNodes="border" propagateIfTag1="highway" propagateIfValue1="steps"/> <!-- Used only for propagateToNodes -->
+	<type tag="layer" value="5" minzoom="10" additional="true" poi="false" propagateToNodes="border" propagateIfTag1="highway" propagateIfValue1="steps"/> <!-- Used only for propagateToNodes -->
+	<type tag="layer" value="-5" minzoom="10" additional="true" poi="false" propagateToNodes="border" propagateIfTag1="highway" propagateIfValue1="steps"/> <!-- Used only for propagateToNodes -->
 	<entity_convert pattern="tag_transform" from_tag="layer" from_value="+1" to_tag1="layer" to_value1="1"/>
 <!--	<entity_convert pattern="tag_transform" from_tag="layer" from_value="2" to_tag1="layer" to_value1="1"/>
 	<entity_convert pattern="tag_transform" from_tag="layer" from_value="+2" to_tag1="layer" to_value1="1"/>
@@ -717,7 +722,8 @@
 	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="building_passage" if_tag1="highway" to_tag1="covered" to_value1="yes" routing="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="flooded" to_tag1="tunnel" to_value1="yes" routing="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="covered" to_tag1="tunnel" to_value1="yes" routing="no" poi="no"/>
-	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="avalanche_protector" to_tag1="tunnel" to_value1="yes" routing="no" poi="no"/>
+	<type tag="osmand_avalanche_protector" value="yes" additional="true" minzoom="11"/>
+	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="avalanche_protector" to_tag1="tunnel" to_value1="yes" to_tag2="osmand_avalanche_protector" to_value2="yes" routing="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="passage" to_tag1="tunnel" to_value1="yes" routing="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="pipe" to_tag1="tunnel" to_value1="yes" routing="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="cave" to_tag1="tunnel" to_value1="yes" routing="no" poi="no"/>
@@ -898,13 +904,15 @@
 	<type tag="name:en" additional="text" order="45"/>
 	<type tag="name" additional="text" lang="true" order="50"/>
 
-<!--	<type tag="osmand_ele_start" additional="true" order="80"/>
+	<!--	<type tag="osmand_ele_start" additional="true" order="80"/>
 	<type tag="osmand_ele_end" additional="true" order="80"/>-->
 
 	
 	<!--  not used
 	<type tag="wiki_id" additional="text" map="false" lang="true"/>
 	-->
+	<type tag="region_join_map" additional="true" />
+	<type tag="region_join_roads" additional="true" />
 	<type tag="region_map" additional="true"/>
 	<type tag="region_wiki" additional="true"/>
 	<type tag="region_wiki_link" additional="text"/>
@@ -1747,8 +1755,12 @@
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$namibia" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="c" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_text_color" to_value3="yellow" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$namibia" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="d" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_text_color" to_value3="yellow" seq="1:10" apply_to="way" notosm="true"/>
 
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$india" if_starts_with_tag1="route_road_*_network" if_starts_with_value1="in:nh" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$india" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="nh" to_substr1="2" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$india" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="ah" to_substr1="2" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$india" if_starts_with_tag1="route_road_*_network" if_starts_with_value1="in:sh" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="usshield" to_tag4="route_road_*_shield_shape_mod" to_value4="greentop" to_tag5="route_road_*_shield_order" to_value5="2" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$india" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="sh" to_substr1="2" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="usshield" to_tag4="route_road_*_shield_shape_mod" to_value4="greentop" to_tag5="route_road_*_shield_order" to_value5="2" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$india" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="msh" to_substr1="3" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="usshield" to_tag4="route_road_*_shield_shape_mod" to_value4="greentop" to_tag5="route_road_*_shield_order" to_value5="2" seq="1:10" apply_to="way" notosm="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$iran" if_tag1="highway" if_value1="motorway" if_not_starts_with_tag1="route_road_*_ref" if_not_starts_with_value1="ah" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$iran,$iraq" if_not_tag1="highway" if_not_value1="motorway" if_not_starts_with_tag1="route_road_*_ref" if_not_starts_with_value1="ah" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" seq="1:10" apply_to="way" notosm="true"/>
@@ -1967,7 +1979,8 @@
 		<type tag="highway" value="pedestrian" minzoom="12" />
 		<type tag="highway" value="cycleway" minzoom="11" />
 		<type tag="highway" value="footway" minzoom="11" />
-		<type tag="highway" value="steps" minzoom="14" />
+		<type tag="osmand_highway" value="steps" minzoom="14"/>
+		<type tag="highway" value="steps" minzoom="14" propagateToNodes="border" propagateToNodesPrefix="osmand_"/>
 		<entity_convert pattern="tag_transform" from_tag="handrail:left" from_value="yes" to_tag1="handrail" to_value1="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="handrail:right" from_value="yes" to_tag1="handrail" to_value1="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="handrail:center" from_value="yes" to_tag1="handrail" to_value1="yes"/>
@@ -2142,7 +2155,8 @@
 
 	<category name="routes">
 		<!-- Disable proposed routes-->
-		<entity_convert pattern="tag_transform" from_tag="route" if_tag1="state" if_value1="proposed" to_tag1="route" to_value1="proposed" apply_to="way,node,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="route" if_tag1="state" if_value1="proposed" to_tag1="route" to_value1="proposed" apply_to="relation"/>
+		<entity_convert pattern="tag_transform" from_tag="route" if_tag1="abandoned" if_value1="yes" apply_to="relation"/>
 
 		<!-- ROUTE SECTION: HIKING routes -->
 
@@ -2198,24 +2212,24 @@
 	
 
 		<type tag="route" value="hiking" relationGroupSort="network=iwn,nwn,rwn,lwn" 
-				nameTags="ref,name,osmc_text,osmc_textcolor,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,direction,state,colour,ascent,descent,roundtrip,tourism" namePrefix="hiking_route_"
-				additionalTags="node_network,network,historic,educational,signed_direction,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor"
+				nameTags="ref,name,osmc_text,osmc_textcolor,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,direction,state,colour,ascent,descent,roundtrip,tourism,relation_id" namePrefix="hiking_route_"
+				additionalTags="node_network,network,historic,educational,signed_direction,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor,osmc_order"
 				additionalPrefix="hiking_"
-				relationGroupAdditionalTags="node_network,network,historic,educational,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor"
-				relationGroupNameTags="osmc_stub_name,ref,name,osmc_text,osmc_textcolor,operator,symbol,sac_scale,cai_scale,survey:date,website,wikipedia,description,from,via,to,distance,state,colour,ascent,descent,roundtrip,tourism"
+				relationGroupAdditionalTags="node_network,network,historic,educational,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor,osmc_order"
+				relationGroupNameTags="osmc_stub_name,ref,name,osmc_text,osmc_textcolor,operator,symbol,sac_scale,cai_scale,survey:date,website,wikipedia,description,from,via,to,distance,state,colour,ascent,descent,roundtrip,tourism,relation_id"
 				minzoom="11" relationGroup="true" notosm="true"/>
 				
 		<type tag="route" value="horse" 
-				nameTags="ref,name,osmc_text,osmc_textcolor,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,state,colour,ascent,descent,roundtrip,tourism" namePrefix="horse_route_"
-				additionalTags="network,historic,educational,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor" 
-				relationGroupAdditionalTags="network,historic,educational,signed_direction,osmc_foreground,osmc_background,osmc_foreground2,osmc_waycolor" 
-				relationGroupNameTags="osmc_stub_name,ref,name,osmc_text,osmc_textcolor,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,state,colour,ascent,descent,roundtrip,tourism"
+				nameTags="ref,name,osmc_text,osmc_textcolor,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,state,colour,ascent,descent,roundtrip,tourism,relation_id" namePrefix="horse_route_"
+				additionalTags="network,historic,educational,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor,osmc_order" 
+				relationGroupAdditionalTags="network,historic,educational,signed_direction,osmc_foreground,osmc_background,osmc_foreground2,osmc_waycolor,osmc_order" 
+				relationGroupNameTags="osmc_stub_name,ref,name,osmc_text,osmc_textcolor,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,state,colour,ascent,descent,roundtrip,tourism,relation_id"
 				minzoom="11" relationGroup="true" notosm="true"/>
 
 		<type tag="route" value="running" 
 				nameTags="ref,name,osmc_text,osmc_textcolor,operator,description,from,via,to,distance,state,colour,ascent,descent,roundtrip" namePrefix="running_route_"
-				additionalTags="network,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor" 
-				relationGroupAdditionalTags="network,osmc_foreground,osmc_background,osmc_foreground2,osmc_waycolor" 
+				additionalTags="network,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor,osmc_order" 
+				relationGroupAdditionalTags="network,osmc_foreground,osmc_background,osmc_foreground2,osmc_waycolor,osmc_order" 
 				relationGroupNameTags="osmc_stub_name,ref,name,osmc_text,osmc_textcolor,operator,description,from,via,to,distance,state,colour,ascent,descent,roundtrip"
 				minzoom="11" relationGroup="true" notosm="true"/>
 
@@ -2252,7 +2266,11 @@
 
 		<type tag="route" value="fitness_trail" nameTags="name,ref" namePrefix="fitness_route_" relationGroupNameTags="name,ref" minzoom="11" relationGroup="true" notosm="true"/>
 		<type tag="route_fitness_trail" value="yes" additional="true" notosm="true" />
+		<type tag="route_fitness_trail_1_osmc_background" minzoom="11" additional="true"/>
+		<type tag="route_fitness_trail_1_osmc_foreground" minzoom="11" additional="true"/>
+		<type tag="route_fitness_trail_1_osmc_order" minzoom="11" additional="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_fitness_trail" if_tag1="leisure" to_tag1="route_fitness_trail" to_value1="yes" apply_to="node"/>
+		<entity_convert pattern="tag_transform" from_tag="route_fitness_trail" to_tag1="route_fitness_trail" to_tag2="route_fitness_trail_1_osmc_background" to_value2="white" to_tag3="route_fitness_trail_1_osmc_foreground" to_value3="black_runner" to_tag4="route_fitness_trail_1_osmc_order" to_value4="1" to_tag5="osmc_stub_name" to_value5="." apply_to="way,relation"/>
 
 		<!-- ROUTE SECTION: PUBLIC transport routes-->
 		<type tag="route" value="ferry" minzoom="8" nameTags="ref" namePrefix="ferry_route_" relationGroup="true"/>
@@ -2359,17 +2377,17 @@
 		<entity_convert pattern="tag_transform" from_tag="mtb:name" if_not_tag1="route" to_tag1="mtb:name" to_tag2="route" to_value2="mtb" apply_to="way"/>
 
 		<type tag="route" value="bicycle" relationGroupSort="network=icn,ncn,rcn,lcn"
-					additionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
-					nameTags="name,ref,osmc_text,osmc_textcolor,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,cycle_network,state,colour,ascent,descent,roundtrip,tourism" namePrefix="bicycle_"
-					relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
-					relationGroupNameTags="name,mtb:name,ref,osmc_text,osmc_textcolor,osmc_stub_name,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,cycle_network"
+					additionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,osmc_order,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
+					nameTags="name,ref,osmc_text,osmc_textcolor,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,cycle_network,state,colour,ascent,descent,roundtrip,tourism,relation_id" namePrefix="bicycle_"
+					relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,osmc_order,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
+					relationGroupNameTags="name,mtb:name,ref,osmc_text,osmc_textcolor,osmc_stub_name,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,cycle_network,relation_id"
 					minzoom="11" relationGroup="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="route" if_value1="mtb" if_not_tag1="mtb:name" to_tag1="name" to_tag2="mtb:name" apply_to="relation"/>
 		<type tag="route" value="mtb" relationGroupSort="network=icn,ncn,rcn,lcn"
-					additionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
-					nameTags="mtb:name,ref,osmc_text,osmc_textcolor,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,cycle_network,state,colour,ascent,descent,roundtrip,tourism" namePrefix="bicycle_"
-					relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
-					relationGroupNameTags="name,mtb:name,ref,osmc_text,osmc_textcolor,osmc_stub_name,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,cycle_network"
+					additionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,osmc_order,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
+					nameTags="mtb:name,ref,osmc_text,osmc_textcolor,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,cycle_network,state,colour,ascent,descent,roundtrip,tourism,relation_id" namePrefix="bicycle_"
+					relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,osmc_order,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
+					relationGroupNameTags="name,mtb:name,ref,osmc_text,osmc_textcolor,osmc_stub_name,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,cycle_network,relation_id"
 					minzoom="11" relationGroup="true" notosm="true"/>
 		
 		<type tag="mtb:type" value="crosscountry" minzoom="11" additional="true" />
@@ -2385,6 +2403,7 @@
 		<type tag="mtb:scale" value="4" minzoom="11" additional="true" />
 		<type tag="mtb:scale" value="5" minzoom="11" additional="true" />
 		<type tag="mtb:scale" value="6" minzoom="11" additional="true" />
+		<type tag="mtb:scale" value="?" minzoom="11" additional="true" />
 		<type tag="incline" value="up" minzoom="11" additional="true" />
 		<type tag="incline" value="down" minzoom="11" additional="true" />
 		<entity_convert pattern="tag_transform" from_tag="incline" from_value="-1" to_tag1="incline" to_value1="down" poi="no" routing="no"/>
@@ -2509,8 +2528,8 @@
 		<type tag="route" value="piste" 
 			nameTags="piste:name,piste:ref,osmc_text,osmc_textcolor,description,from,to,distance,state,colour,ascent,descent,roundtrip,tourism"
 			relationGroupNameTags="piste:name,piste:ref,osmc_text,osmc_textcolor,osmc_stub_name,description,from,to,distance,state,colour,ascent,descent,roundtrip,tourism"
-			additionalTags="piste:type,piste:difficulty,piste:grooming,piste:abandoned,piste:oneway,piste_region,osmc_foreground,osmc_background" 
-			relationGroupAdditionalTags="piste:type,piste:difficulty,piste:grooming,piste:abandoned,piste:oneway,piste_region,osmc_foreground,osmc_background" 
+			additionalTags="piste:type,piste:difficulty,piste:grooming,piste:abandoned,piste:oneway,piste_region,osmc_foreground,osmc_background,osmc_order" 
+			relationGroupAdditionalTags="piste:type,piste:difficulty,piste:grooming,piste:abandoned,piste:oneway,piste_region,osmc_foreground,osmc_background,osmc_order" 
 			minzoom="11" relationGroup="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="piste:type" if_not_tag1="piste:name" to_tag1="piste:name" to_tag2="name" apply_to="way,relation" poi="no"/>
@@ -2947,6 +2966,7 @@
 		<type tag="dirtbike:scale" value="4" minzoom="12" additional="true"/>
 		<type tag="dirtbike:scale" value="5" minzoom="12" additional="true"/>
 		<type tag="dirtbike:scale" value="6" minzoom="12" additional="true"/>
+		<type tag="dirtbike:scale" value="?" minzoom="12" additional="true"/>
 	</category>
 
 	<category name="horse_scale">
@@ -2978,6 +2998,7 @@
 		<type tag="osmc_background" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" additional="true" notosm="true"/>
 		<type tag="osmc_foreground2" additional="true" notosm="true"/>
+		<type tag="osmc_order" additional="true" notosm="true"/>
 		<type tag="osmc_text" additional="text" notosm="true"/>
 		<type tag="osmc_text_symbol" additional="text" notosm="true"/>
 		<type tag="osmc_textcolor" additional="true" notosm="true"/>
@@ -3548,6 +3569,7 @@
 		<type tag="traffic_calming" value="hump" minzoom="16" />
 		<type tag="traffic_calming" value="rumble_strip" minzoom="16" />
 		<entity_convert pattern="tag_transform" from_tag="traffic_calming" from_value="rumble_strip" map="no" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="traffic_calming" from_value="no" poi="yes" routing="yes" />
 		<type tag="traffic_calming" value="table" minzoom="16" />
 		<type tag="traffic_calming" value="choker" minzoom="16" />
 		<type tag="traffic_calming" value="island" minzoom="16" />
@@ -3645,6 +3667,11 @@
 		<type tag="barrier" value="sliding_gate" minzoom="15" />
 		<type tag="barrier" value="wedge" minzoom="15"/>
 
+	</category>
+
+	<category name="obstacle">
+		<type tag="obstacle" value="vegetation" minzoom="13" additional="true"/>
+		<type tag="obstacle" value="fallen_tree" minzoom="13" additional="true"/>
 	</category>
 
 	<category name="waterway">
@@ -3834,6 +3861,8 @@
 			<!-- Kyiv -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_tag1="operator" if_value1="КП «Київський метрополітен»" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="kyiv"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_tag1="operator" if_value1="КП «Київський метрополітен»" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="subway_region" to_value3="kyiv"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_tag1="operator" if_value1="Київський метрополітен" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="kyiv"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_tag1="operator" if_value1="Київський метрополітен" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="subway_region" to_value3="kyiv"/>
 			<!-- Kharkiv -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_tag1="operator" if_value1="КП «Харківський метрополітен»" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="kharkiv"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_tag1="operator" if_value1="КП «Харківський метрополітен»" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="subway_region" to_value3="kharkiv"/>
@@ -4123,6 +4152,7 @@
 		<type tag="railway" value="turntable" minzoom="15" />
 		<type tag="service" value="spur" minzoom="7" additional="true" />
 		<entity_convert pattern="tag_transform" from_tag="service" from_value="siding" to_tag1="service" to_value1="spur" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="yard" to_tag1="service" to_value1="spur" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="service" from_value="crossover" to_tag1="service" to_value1="spur" poi="no"/>
 	</category>
 
@@ -4492,6 +4522,7 @@
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="embassy" if_not_tag1="diplomatic" to_tag1="office" to_value1="diplomatic" to_tag2="diplomatic" to_value2="embassy"/>
 		<type tag="office" value="educational_institution" minzoom="15" />
 		<type tag="office" value="employment_agency" minzoom="15" />
+		<type tag="office" value="engineer" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="government" to_tag1="office"/>
 		<type tag="government" value="bailiff" minzoom="15" additional="true" />
 		<type tag="government" value="prosecutor" minzoom="15" additional="true" />
@@ -4515,6 +4546,7 @@
 		<type tag="office" value="association" minzoom="15" />
 		<type tag="office" value="financial" minzoom="15" />
 		<type tag="office" value="political_party" minzoom="15" />
+		<type tag="office" value="property_management" minzoom="15" />
 		<type tag="office" value="notary" minzoom="15" />
 		<type tag="office" value="foundation" minzoom="15" />
 		<type tag="office" value="tax_advisor" minzoom="15" />
@@ -5036,7 +5068,8 @@
 		<type tag="tourism" value="alpine_hut" minzoom="14" />
 		<type tag="tourism" value="wilderness_hut" minzoom="14" />
 		<type tag="tourism" value="chalet" minzoom="15" />
-		<type tag="tourism" value="lean_to" minzoom="15" />
+		<type tag="shelter_type" value="lean_to" additional="true" minzoom="13"/>
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="lean_to" to_tag1="amenity" to_value1="shelter" to_tag2="shelter_type" to_value2="lean_to"/>
 		<type tag="tourism" value="hunting_lodge" minzoom="15" />
 		<type tag="tourism" value="guest_house" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="bed_and_breakfast" to_tag1="tourism" to_value1="guest_house"/>
@@ -6403,6 +6436,11 @@
 		<type tag="golf" value="pin" minzoom="14" />
 		<type tag="golf" value="rough" minzoom="14" />
 		<type tag="golf" value="fairway" minzoom="14" />
+		<type tag="golf" value="tee" minzoom="14" />
+		<type tag="golf" value="green" minzoom="14" />
+		<type tag="golf" value="bunker" minzoom="14" />
+		<entity_convert pattern="tag_transform" from_tag="golf" from_value="water_hazard" if_not_tag1="natural" to_tag1="natural" to_value1="water"/>
+		<entity_convert pattern="tag_transform" from_tag="golf" from_value="lateral_water_hazard" if_not_tag1="natural" to_tag1="natural" to_value1="water"/>
 
 		<type tag="highway" value="via_ferrata" minzoom="12"/>
 		<type tag="via_ferrata_scale" value="0" minzoom="12" additional="true"/>
@@ -6980,6 +7018,7 @@
 		<routing_type tag="route_hiking_*_descent" seq="1:10" mode="text" base="false"/>
 		<routing_type tag="route_hiking_*_roundtrip" seq="1:10" mode="text" base="false"/>
 		<routing_type tag="route_hiking_*_tourism" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_hiking_*_relation_id" seq="1:10" mode="text" base="false"/>
 		<routing_type tag="route_bicycle" mode="register" base="true"/>
 		<routing_type tag="route_bicycle_*" seq="1:10" mode="text" base="false"/>
 		<routing_type tag="route_bicycle_*_name" seq="1:10" mode="text" base="false"/>
@@ -7010,6 +7049,7 @@
 		<routing_type tag="route_bicycle_*_descent" seq="1:10" mode="text" base="false"/>
 		<routing_type tag="route_bicycle_*_roundtrip" seq="1:10" mode="text" base="false"/>
 		<routing_type tag="route_bicycle_*_tourism" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_bicycle_*_relation_id" seq="1:10" mode="text" base="false"/>
 		<routing_type tag="route_mtb" mode="register" base="true"/>
 		<routing_type tag="route_mtb_*" seq="1:10" mode="text" base="false"/>
 		<routing_type tag="route_mtb_*_name" seq="1:10" mode="text" base="false"/>
@@ -7040,6 +7080,7 @@
 		<routing_type tag="route_mtb_*_description" seq="1:10" mode="text" base="false"/>
 		<routing_type tag="route_mtb_*_roundtrip" seq="1:10" mode="text" base="false"/>
 		<routing_type tag="route_mtb_*_tourism" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_mtb_*_relation_id" seq="1:10" mode="text" base="false"/>
 		<routing_type tag="route_horse" mode="register" base="true"/>
 		<routing_type tag="route_horse_*" seq="1:10" mode="text" base="false"/>
 		<routing_type tag="route_horse_*_name" seq="1:10" mode="text" base="false"/>
@@ -7073,6 +7114,7 @@
 		<routing_type tag="route_horse_*_roundtrip" seq="1:10" mode="text" base="false"/>
 		<routing_type tag="route_horse_*_tourism" seq="1:10" mode="text" base="false"/>
 		<routing_type tag="route_horse_*_description" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_horse_*_relation_id" seq="1:10" mode="text" base="false"/>
 		<!-- <routing_type tag="route" value="bus" mode="register" base="true" relation="true"/> -->
 		<routing_type tag="railway" mode="register"/>
 
@@ -7277,6 +7319,7 @@
 		<routing_type tag="sac_scale" mode="amend"/>
 		<routing_type tag="mtb:scale" mode="amend"/>
 		<routing_type tag="dirtbike:scale" mode="amend"/>
+		<routing_type tag="obstacle" mode="amend"/>
 		<routing_type tag="class:bicycle" mode="amend"/>
 		<routing_type tag="class:bicycle:mtb" mode="amend"/>
 		<routing_type tag="footway" mode="amend"/>
@@ -7321,5 +7364,8 @@
 		<routing_type tag="incline" mode="amend"/>
 		<routing_type tag="via_ferrata_scale" mode="amend"/>
 		<routing_type tag="hazard" mode="amend"/>
+		<routing_type tag="red_turn:straight:bicycle" mode="amend"/>
+		<routing_type tag="red_turn:right:bicycle" mode="amend"/>
+		<routing_type tag="red_turn:left:bicycle" mode="amend"/>
 	</category>
 </osmand_types>

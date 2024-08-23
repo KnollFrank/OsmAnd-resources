@@ -26,7 +26,7 @@
     "expectedResults": {
       "26557": "+TL|C|C|C|TR",
       "26517": "+TL|C|C|C",
-      "26545": "TL|+C|+C"
+      "26545": ""
     }
   },
   {
@@ -175,7 +175,7 @@
     "expectedResults": {
       "27305": "+TL|+TL|C|C,TR",
       "27275": "+TL|+TL|C|C",
-      "27231": "TL|+C|+C"
+      "27231": ""
     }
   },
   {
@@ -218,7 +218,7 @@
     },
     "expectedResults": {
       "27441": "+TL|+TL,TR",
-      "27461": "TL|+C|+C"
+      "27461": ""
     }
   },
   {
@@ -233,7 +233,7 @@
     },
     "expectedResults": {
       "27581": "+TL|TR",
-      "27591": "+C|+C,TR"
+      "27591": ""
     }
   },
   {
@@ -276,8 +276,8 @@
     },
     "expectedResults": {
       "7351364": null,
-      "7351365": "+TL",
-      "7351445": "+TL"
+      "7351365": "TL",
+      "7351445": "TL"
     }
   },
   {
@@ -344,20 +344,6 @@
     }
   },
   {
-    "testName": "17.Alt-Mahlsdorf  S",
-    "startPoint": {
-      "latitude": 45.669848071308095,
-      "longitude": 35.49515941739082
-    },
-    "endPoint": {
-      "latitude": 45.669818082408455,
-      "longitude": 35.500362902879715
-    },
-    "expectedResults": {
-      "7040281": "TL|+C|+C|TR"
-    }
-  },
-  {
     "testName": "18.Stuttgarter Straße  S",
     "startPoint": {
       "latitude": 45.66799997535318,
@@ -368,7 +354,7 @@
       "longitude": 35.5249265730381
     },
     "expectedResults": {
-      "7057747": "TL|+C"
+      "7057747": ""
     }
   },
   {
@@ -554,7 +540,7 @@
     },
     "expectedResults": {
       "265002602": "TL|TL|+C|+C|TSLR",
-      "362433819": "TL|TL|+C|+C"
+      "362433819": ""
     }
   },
   {
@@ -585,7 +571,7 @@
     "expectedResults": {
       "222244": "[MUTE] C:TL|TL|+C,TR",
       "222243": "[MUTE] C:TL|TL|+C|+C|TSLR",
-      "222164": "C:TL|TL|+C|+C"
+      "222164": ""
     }
   },
   {
@@ -601,7 +587,7 @@
     "expectedResults": {
       "222244": "+TL|+TL|C,TR",
       "222243": "+TL|+TL|C|C|TSLR",
-      "222164": "+TL|+TL|C|C"
+      "222164": ""
     }
   },
   {
@@ -704,7 +690,7 @@
       "longitude": 35.6042527705431
     },
     "expectedResults": {
-      "129459": "C|+C|+C"
+      "129459": ""
     }
   },
   {
@@ -732,7 +718,7 @@
       "longitude": 35.66227
     },
     "expectedResults": {
-      "165220": "TSLR:+TSLR,C|+TSLR"
+      "165191": "TSLR:+TSLR,C|+TSLR"
     }
   },
   {
@@ -746,7 +732,7 @@
       "longitude": 35.68649
     },
     "expectedResults": {
-      "106726": "C,TL|+C|+C|+C,TR|TR"
+      "106726": "TL,C|+C|+C|+C,TR|TR"
     }
   },
   {
@@ -803,7 +789,7 @@
       "longitude": 35.5324847
     },
     "expectedResults": {
-      "892244322": "+TL|+TL|C"
+      "892244326": "+TL|+TL|C"
     }
   },
   {
@@ -831,7 +817,7 @@
       "longitude": 35.6439805
     },
     "expectedResults": {
-      "495551947": "[MUTE] KR:C|C|+C|+C"
+      "495551947:1": ""
     }
   },
   {
@@ -846,7 +832,7 @@
     },
     "expectedResults": {
       "144382514": "[MUTE] C:TL|+C,TL|TR|TR",
-      "67069099:3": "[MUTE] KL:+C|+C|+C|C"
+      "67069099:3": ""
     }
   },
   {
@@ -860,9 +846,9 @@
       "longitude": 35.4395102
     },
     "expectedResults": {
-      "322961143": "[MUTE] C:+C,TL|TR",
-      "92933257": "[MUTE] C:TL|+C",
-      "29183562": "[MUTE] C:TL|+C"
+      "322961143": "KL:+C,TL|TR",
+      "92933257": "",
+      "29183562": "C:TL|+C"
     }
   },
   {
@@ -891,7 +877,7 @@
       "longitude": 35.5007343
     },
     "expectedResults": {
-      "940876754": "[MUTE] KL:+TL|C|C|TR",
+      "940876754": "KL:+TL|C|C|TR",
       "940481218": "TL:+TL|C|C"
     }
   },
@@ -906,7 +892,7 @@
           "longitude": 35.530335
       },
       "expectedResults": {
-          "74653713": "[MUTE] C:+C|+C|+C,TSLR|TSLR"
+          "74653713": ""
       }
   },
   {
@@ -948,7 +934,7 @@
           "longitude": 35.6421009
       },
       "expectedResults": {
-          "327441457": "C"
+          "327441457": ""
       }
   },
   {
@@ -962,7 +948,7 @@
           "longitude": 35.6785246
       },
       "expectedResults": {
-          "69046519": "C"
+          "69046519": ""
       }
   },
   {
@@ -1102,7 +1088,7 @@
       "longitude": 35.552498
     },
     "expectedResults": {
-      "610913306": "[MUTE] KR:TU|C|C|+TR"
+      "610913306": "KR:TU|C|C|+TR"
     }
   },
   {
@@ -1120,35 +1106,6 @@
     }
   },
   {
-    "testName": "65.1  Impossible lane assist - left and straight simultaneously https://github.com/osmandapp/OsmAnd/issues/15350",
-    "startPoint": {
-      "latitude": 45.55118,
-      "longitude": 35.60086
-    },
-    "endPoint": {
-      "latitude": 45.55199,
-      "longitude": 35.60184
-    },
-    "expectedResults": {
-      "1092129866": "[MUTE] C:TL|+C,TR"
-    }
-  },
-  {
-    "testName": "65.2  Impossible lane assist - left and straight simultaneously https://github.com/osmandapp/OsmAnd/issues/15350",
-    "ignoreNative":true,
-    "startPoint": {
-      "latitude": 45.549507,
-      "longitude": 35.59118
-    },
-    "endPoint": {
-      "latitude": 45.55165,
-      "longitude": 35.602062
-    },
-    "expectedResults": {
-      "500585498": "TR:TL|+TR,C"
-    }
-  },
-  {
     "testName": "66. Change lanes indication so it's visible lanes split on single lane road https://github.com/osmandapp/OsmAnd/issues/13829",
     "startPoint": {
       "latitude": 45.55241,
@@ -1159,7 +1116,7 @@
       "longitude": 35.622772
     },
     "expectedResults": {
-      "175461903": "C:+C,TSLR"
+      "175461903": "KL:+C,TSLR"
     }
   },
   {
@@ -1187,7 +1144,7 @@
       "longitude": 35.65436
     },
     "expectedResults": {
-      "123592887": "[MUTE] C:+C|+C|+C,TSLR|TSLR"
+      "123592887": ""
     }
   },
   {
@@ -1216,7 +1173,7 @@
     },
     "expectedResults": {
       "25230864": "TR:TL|C|+TR,C|TR",
-      "62775363": "[MUTE] C:+C|TSLR"
+      "62775363": "KL:+C|TSLR"
     }
   },
   {
@@ -1245,6 +1202,366 @@
     },
     "expectedResults": {
       "603065820": "[MUTE] C:+C|TSLR"
+    }
+  },
+  {
+    "testName": "73. Turn to the right (taking exit) is not indicated https://github.com/osmandapp/OsmAnd/issues/19379",
+    "startPoint": {
+      "latitude": 45.53683,
+      "longitude": 35.54396
+    },
+    "endPoint": {
+      "latitude": 45.53232,
+      "longitude": 35.54126
+    },
+    "expectedResults": {
+      "603995736": "TSLR:C|C|C|+TSLR|TR",
+      "331966035": "TSLL:+TSLL|C"
+    }
+  },
+  {
+    "testName": "74. Lane guidance has difficulty suggesting to go straight ahead https://github.com/osmandapp/OsmAnd/issues/18158",
+    "startPoint": {
+      "latitude": 45.53456,
+      "longitude": 35.57040
+    },
+    "endPoint": {
+      "latitude": 45.53641,
+      "longitude": 35.56797
+    },
+    "expectedResults": {
+      "9896643": "TR:TL|C|+TR,C"
+    }
+  },
+  {
+    "testName": "75. Incorrect turn lanes https://github.com/osmandapp/OsmAnd/issues/19041",
+    "startPoint": {
+      "latitude": 45.53613,
+      "longitude": 35.58751
+    },
+    "endPoint": {
+      "latitude": 45.53398,
+      "longitude": 35.58583
+    },
+    "expectedResults": {
+      "588754800": "TSLR:TL|C|+TSLR|+TSLR"
+    }
+  },
+  {
+    "testName": "76. On motorway exits no turn lanes are displayed or muted https://github.com/osmandapp/OsmAnd/issues/19441",
+    "startPoint": {
+      "latitude": 45.53587,
+      "longitude": 35.60864
+    },
+    "endPoint": {
+      "latitude": 45.53198,
+      "longitude": 35.62046
+    },
+    "expectedResults": {
+      "4228009": "KL:+C|+C|TSLR|TSLR"
+    }
+  },
+  {
+    "testName": "77.1 On motorway exits no turn lanes are displayed or muted https://github.com/osmandapp/OsmAnd/issues/19441",
+    "startPoint": {
+      "latitude": 45.52718,
+      "longitude": 35.64440
+    },
+    "endPoint": {
+      "latitude": 45.53336,
+      "longitude": 35.64106
+    },
+    "expectedResults": {
+      "7050508": "KL:+C|+C|TSLR"
+    }
+  },
+  {
+    "testName": "77.2 On motorway exits no turn lanes are displayed or muted https://github.com/osmandapp/OsmAnd/issues/19441",
+    "startPoint": {
+      "latitude": 45.52718,
+      "longitude": 35.64440
+    },
+    "endPoint": {
+      "latitude": 45.53550,
+      "longitude": 35.63983
+    },
+    "expectedResults": {
+      "7050520": "TSLR:C|C|+TSLR"
+    }
+  },
+  {
+    "testName": "78. Turn lanes - Turn left instead of Straight https://github.com/osmandapp/OsmAnd/issues/19178",
+    "startPoint": {
+      "latitude": 45.53370,
+      "longitude": 35.66095
+    },
+    "endPoint": {
+      "latitude": 45.53423,
+      "longitude": 35.66350
+    },
+    "expectedResults": {
+      "146372116": "",
+      "146372127": "[MUTE] C:TL|+C"
+    }
+  },
+  {
+    "testName": "79.1 Says Turn Left when it should say Go Straight https://github.com/osmandapp/OsmAnd/issues/19343",
+    "startPoint": {
+      "latitude": 45.53399,
+      "longitude": 35.68471
+    },
+    "endPoint": {
+      "latitude": 45.53508,
+      "longitude": 35.68251
+    },
+    "expectedResults": {
+      "1168172463": "TSLR:C|C|C|+TSLR,C"
+    }
+  },
+  {
+    "testName": "79.2 Says Turn Left when it should say Go Straight https://github.com/osmandapp/OsmAnd/issues/19343",
+    "startPoint": {
+      "latitude": 45.53399,
+      "longitude": 35.68471
+    },
+    "endPoint": {
+      "latitude": 45.53417,
+      "longitude": 35.67937
+    },
+    "expectedResults": {
+      "1008103718": "[MUTE] C:TL|C|C|C"
+    }
+  },
+  {
+    "testName": "80.1 Missing or muted turn directions https://github.com/osmandapp/OsmAnd/issues/19458",
+    "startPoint": {
+      "latitude": 45.51574,
+      "longitude": 35.42940
+    },
+    "endPoint": {
+      "latitude": 45.51805,
+      "longitude": 35.44053
+    },
+    "expectedResults": {
+      "469128390": "KR:TSLL|+C,TSLL",
+      "773034163": "KL:+C,TSLR,TR"
+    }
+  },
+  {
+    "testName": "80.2 Missing or muted turn directions https://github.com/osmandapp/OsmAnd/issues/19458",
+    "startPoint": {
+      "latitude": 45.51574,
+      "longitude": 35.42940
+    },
+    "endPoint": {
+      "latitude": 45.51790,
+      "longitude": 35.44061
+    },
+    "expectedResults": {
+      "773034164": "TSLR:+TSLR,C,TR"
+    }
+  },
+  {
+    "testName": "80.3 Missing or muted turn directions https://github.com/osmandapp/OsmAnd/issues/19458",
+    "startPoint": {
+      "latitude": 45.51574,
+      "longitude": 35.42940
+    },
+    "endPoint": {
+      "latitude": 45.51781,
+      "longitude": 35.44072
+    },
+    "expectedResults": {
+      "140659421": "TR:+TR,C,TSLR"
+    }
+  },
+  {
+    "testName": "81. Missing or muted turn directions https://github.com/osmandapp/OsmAnd/issues/19458",
+    "startPoint": {
+      "latitude": 45.51684,
+      "longitude": 35.46801
+    },
+    "endPoint": {
+      "latitude": 45.51851,
+      "longitude": 35.45630
+    },
+    "expectedResults": {
+      "27594670": "KR:+C,TSLL",
+      "27594551": "KL:+KL,KR"
+    }
+  },
+  {
+    "testName": "82.1 Missing or muted turn directions https://github.com/osmandapp/OsmAnd/issues/19458",
+    "startPoint": {
+      "latitude": 45.51613,
+      "longitude": 35.48105
+    },
+    "endPoint": {
+      "latitude": 45.51793,
+      "longitude": 35.48112
+    },
+    "expectedResults": {
+      "151468220": "KL:+TL|+TL,C|C,TR|TR"
+    }
+  },
+  {
+    "testName": "82.2 Missing or muted turn directions https://github.com/osmandapp/OsmAnd/issues/19458",
+    "startPoint": {
+      "latitude": 45.51613,
+      "longitude": 35.48105
+    },
+    "endPoint": {
+      "latitude": 45.51758,
+      "longitude": 35.48421
+    },
+    "expectedResults": {      
+      "795897716:0": "[MUTE] C:TL|+C,TL|C,TR|TR"
+    }
+  },
+  {
+    "testName": "82.3 Missing or muted turn directions https://github.com/osmandapp/OsmAnd/issues/19458",
+    "startPoint": {
+      "latitude": 45.51613,
+      "longitude": 35.48105
+    },
+    "endPoint": {
+      "latitude": 45.51621,
+      "longitude": 35.48254
+    },
+    "expectedResults": {
+      "224068885": "KR:TL|C,TL|+TR,C|+TR",
+      "26979906": "TR:+TR,C|+TR"
+    }
+  },
+  {
+    "testName": "82.4 Missing or muted turn directions https://github.com/osmandapp/OsmAnd/issues/19458",
+    "startPoint": {
+      "latitude": 45.51713,
+      "longitude": 35.48048
+    },
+    "endPoint": {
+      "latitude": 45.51792,
+      "longitude": 35.48113
+    },
+    "expectedResults": {
+      "26811235": "TSLL:+TSLL|C|C|C",
+      "208432905": "TSLL:+TSLL|TSLR"
+    }
+  },
+  {
+    "testName": "82.5 Missing or muted turn directions https://github.com/osmandapp/OsmAnd/issues/19458",
+    "startPoint": {
+      "latitude": 45.51713,
+      "longitude": 35.48048
+    },
+    "endPoint": {
+      "latitude": 45.51759,
+      "longitude": 35.48424
+    },
+    "expectedResults": {
+      "26811235": "TSLL:+TSLL|C|C|C",
+      "377841302": "TSLR:TSLL|+TSLR"
+    }
+  },
+  {
+    "testName": "83.1 Missing or muted turn directions https://github.com/osmandapp/OsmAnd/issues/19458#issuecomment-2042615301",
+    "startPoint": {
+      "latitude": 45.51121,
+      "longitude": 35.52742
+    },
+    "endPoint": {
+      "latitude": 45.51752,
+      "longitude": 35.50152
+    },
+    "expectedResults": {
+      "998106936": "",
+      "614939372": "KL:+C|+C|TSLR"
+    }
+  },
+  {
+    "testName": "83.2 Missing or muted turn directions https://github.com/osmandapp/OsmAnd/issues/19458#issuecomment-2042615301",
+    "startPoint": {
+      "latitude": 45.52127, 
+      "longitude": 35.51793
+    },
+    "endPoint": {
+      "latitude": 45.51752,
+      "longitude": 35.50152
+    },
+    "expectedResults": {
+      "143917050": "KL:+C|+C|TSLR"
+    }
+  },
+  {
+    "testName": "83.3 Missing or muted turn directions https://github.com/osmandapp/OsmAnd/issues/19458#issuecomment-2042615301",
+    "startPoint": {
+      "latitude": 45.51736,
+      "longitude": 35.50091
+    },
+    "endPoint": {
+      "latitude": 45.51469,
+      "longitude": 35.52245
+    },
+    "expectedResults": {
+      "27275779": "KR:TSLL|+C,TSLL|+C",
+      "614939373": ""
+    }
+  },
+  {
+    "testName": "84. Turns slightly left when the main road turns left https://github.com/osmandapp/OsmAnd/issues/19541",
+    "startPoint": {
+      "latitude": 45.52591,
+      "longitude": 35.56066
+    },
+    "endPoint": {
+      "latitude": 45.52206,
+      "longitude": 35.55248
+    },
+    "expectedResults": {
+      "100583950:67": "[MUTE] C:+C,TSLL"
+    }
+  },
+  {
+    "testName": "85. Mute (skip) unnecessary go straight that might cause confusion. https://github.com/osmandapp/OsmAnd/issues/20262",
+    "startPoint": {
+      "latitude": 45.5127868,
+      "longitude": 35.5770023
+    },
+    "endPoint": {
+      "latitude": 45.5133988,
+      "longitude": 35.576527
+    },
+    "expectedResults": {
+      "885455011": "[MUTE] C:TL|+TR,C"
+    }
+  },
+  {
+    "testName": "86. No active turn lanes. https://github.com/osmandapp/OsmAnd-Issues/issues/2630",
+    "startPoint": {
+      "latitude": 45.51128,
+      "longitude": 35.59961
+    },
+    "endPoint": {
+      "latitude": 45.511475,
+      "longitude": 35.60063
+    },
+    "expectedResults": {
+      "235856550": "TSLR:C|+TSLR,TR|TR"
+    }
+  },
+  {
+    "testName": "87. incorrect lane indicator https://github.com/osmandapp/OsmAnd/issues/20524",
+    "startPoint": {
+      "latitude": 45.50833,
+      "longitude": 35.62793
+    },
+    "endPoint": {
+      "latitude": 45.511185,
+      "longitude": 35.622417
+    },
+    "expectedResults": {
+      "525350137": "TSLR:C|C|C|+TSLR,TR",
+      "9077404": "TSLR:C|C|C|+TSLR"
     }
   }
 ]

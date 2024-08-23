@@ -8,7 +8,11 @@ mkdir -p "$MAP_SHADERS_SVG"
 #CF=-a
 COPY_CMD=cp
 icon_alias() {
-	$COPY_CMD $CF ../svg-res/${2}.svg $STYLE_ICONS_FOLDER/map-icons-svg/mx_${1}.svg
+	if [[ -f "../svg-res/${2}.svg" ]]; then
+		$COPY_CMD $CF "../svg-res/${2}.svg" "${STYLE_ICONS_FOLDER}/map-icons-svg/mx_${1}.svg"
+	else
+		$COPY_CMD $CF "../svg-res/c_${2}.svg" "${STYLE_ICONS_FOLDER}/map-icons-svg/c_mx_${1}.svg"
+	fi
 	$COPY_CMD $CF ../svg-web-res/${2}.svg $STYLE_ICONS_FOLDER/poi-icons-svg/mx_${1}.svg
 	# $1 icon target name in app
 	# $2 generated icon name from svg
@@ -44,6 +48,7 @@ icon() {
 
 ## Shaders ! # copy all shaders untouched
 $COPY_CMD $CF ../svg-res/h_*.svg $MAP_SHADERS_SVG
+$COPY_CMD $CF ../svg-res/c_h_*.svg $MAP_SHADERS_SVG
 $COPY_CMD $CF ../vd/map/h_*.xml $STYLE_ICONS_FOLDER/map-shaders-vector/
 $COPY_CMD $CF ../png/mdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-mdpi/
 $COPY_CMD $CF ../png/hdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-hdpi/
@@ -332,6 +337,7 @@ icon_alias highway_speed_camera transport_speedcamera
 icon_alias maxspeed transport_maxspeed
 icon_alias mindistance transport_mindistance
 icon_alias highway_steps transport_colored_highway_steps
+icon_alias osmand_steps functional-icons_osmand_steps
 icon_alias highway_traffic_signals_map functional-icons_traffic_lights
 icon_alias highway_traffic_signals transport_traffic_lights
 icon_alias motorway_junction transport_motorway_junction
@@ -353,10 +359,14 @@ icon_alias oneway_black_semitransparent functional-icons_oneway_black_semitransp
 icon_alias oneway_reverse_black_semitransparent functional-icons_oneway_reverse_black_semitransparent
 icon_alias oneway_black_semitransparent_big functional-icons_oneway_black_semitransparent_big
 icon_alias oneway_reverse_black_semitransparent_big functional-icons_oneway_reverse_black_semitransparent_big
+icon_alias oneway_gray functional-icons_oneway_gray
 icon_alias oneway_gray_big functional-icons_oneway_gray_big
+icon_alias oneway_reverse_gray functional-icons_oneway_reverse_gray
 icon_alias oneway_reverse_gray_big functional-icons_oneway_reverse_gray_big
 icon_alias arrow_blue_big functional-icons_arrow_blue_big
 icon_alias arrow_blue_big_night functional-icons_arrow_blue_big_night
+icon_alias arrow_red_up_big functional-icons_arrow_red_up_big
+icon_alias arrow_red_down_big functional-icons_arrow_red_down_big
 icon_alias arrow_triangle_black functional-icons_arrow_triangle_black
 icon_alias arrow_triangle_black_reverse functional-icons_arrow_triangle_black_reverse
 icon_alias arrow_triangle_black_big functional-icons_arrow_triangle_black_big
@@ -1873,13 +1883,9 @@ icon_alias seamark_j21_rocky seamark_int1_seamark_j21_rocky
 icon_alias seamark_j22_coral seamark_int1_seamark_j22_coral
 icon_alias seamark_k311_foul_ground seamark_int1_seamark_k311_foul_ground
 
-icon_alias seamark_j132_weedkelp_shield_night seamark_int1_seamark_j132_weedkelp_shield_night
-icon_alias seamark_j134_seagrass_shield_night seamark_int1_seamark_j134_seagrass_shield_night
-icon_alias seamark_j14_sand_waves_shield_night seamark_int1_seamark_j14_sand_waves_shield_night
-icon_alias seamark_j15_spring_shield_night seamark_int1_seamark_j15_spring_shield_night
-icon_alias seamark_j21_rocky_shield_night seamark_int1_seamark_j21_rocky_shield_night
-icon_alias seamark_j22_coral_shield_night seamark_int1_seamark_j22_coral_shield_night
-icon_alias seamark_k311_foul_ground_shield_night seamark_int1_seamark_k311_foul_ground_shield_night
+icon_alias seamark_j14_sand_waves_night seamark_int1_seamark_j14_sand_waves_night
+icon_alias seamark_j15_spring_night seamark_int1_seamark_j15_spring_night
+icon_alias seamark_k311_foul_ground_night seamark_int1_seamark_k311_foul_ground_night
 
 icon_alias seamark_obstruction_foul_ground seamark_small_obstruction_foul_ground
 icon_alias seamark_obstruction_boom seamark_small_obstruction_boom
@@ -3030,6 +3036,7 @@ icon_alias_no_mx osmc_purple_cross_2 osmc_purple_cross_2
 icon_alias_no_mx osmc_purple_cross_3 osmc_purple_cross_3
 icon_alias_no_mx osmc_purple_cross_4 osmc_purple_cross_4
 icon_alias_no_mx osmc_purple_diamond osmc_purple_diamond
+icon_alias_no_mx osmc_purple_diamond_corner osmc_purple_diamond_corner
 icon_alias_no_mx osmc_purple_diamond_left osmc_purple_diamond_left
 icon_alias_no_mx osmc_purple_diamond_line osmc_purple_diamond_line
 icon_alias_no_mx osmc_purple_diamond_right osmc_purple_diamond_right
@@ -3123,6 +3130,7 @@ icon_alias_no_mx osmc_pink_cross_2 osmc_pink_cross_2
 icon_alias_no_mx osmc_pink_cross_3 osmc_pink_cross_3
 icon_alias_no_mx osmc_pink_cross_4 osmc_pink_cross_4
 icon_alias_no_mx osmc_pink_diamond osmc_pink_diamond
+icon_alias_no_mx osmc_pink_diamond_corner osmc_pink_diamond_corner
 icon_alias_no_mx osmc_pink_diamond_left osmc_pink_diamond_left
 icon_alias_no_mx osmc_pink_diamond_line osmc_pink_diamond_line
 icon_alias_no_mx osmc_pink_diamond_right osmc_pink_diamond_right
@@ -3216,6 +3224,7 @@ icon_alias_no_mx osmc_teal_cross_2 osmc_teal_cross_2
 icon_alias_no_mx osmc_teal_cross_3 osmc_teal_cross_3
 icon_alias_no_mx osmc_teal_cross_4 osmc_teal_cross_4
 icon_alias_no_mx osmc_teal_diamond osmc_teal_diamond
+icon_alias_no_mx osmc_teal_diamond_corner osmc_teal_diamond_corner
 icon_alias_no_mx osmc_teal_diamond_left osmc_teal_diamond_left
 icon_alias_no_mx osmc_teal_diamond_line osmc_teal_diamond_line
 icon_alias_no_mx osmc_teal_diamond_right osmc_teal_diamond_right
@@ -3292,6 +3301,7 @@ icon_alias_no_mx osmc_teal_x_4 osmc_teal_x_4
 
 icon_alias_no_mx osmc_ammonit osmc_ammonit
 icon_alias_no_mx osmc_black_horse osmc_black_horse
+icon_alias_no_mx osmc_black_runner osmc_black_runner
 icon_alias_no_mx osmc_blue_grape osmc_blue_grape
 icon_alias_no_mx osmc_blue_wheelchair osmc_blue_wheelchair
 icon_alias_no_mx osmc_brown_right osmc_brown_right

@@ -256,7 +256,6 @@
 		<icon name="Chalet" tag="tourism" value="chalet"/>
 		<icon name="Camp site" tag="tourism" value="camp_site"/>
 		<icon name="Camp pitch" tag="tourism" value="camp_pitch"/>
-		<icon name="Lean-to" tag="tourism" value="lean_to"/>
 		<icon name="Shelter" tag="amenity" value="shelter"/>
 		<icon name="Refugee site" tag="amenity" value="refugee_site"/>
 	</group>
@@ -493,10 +492,12 @@
 		<icon name="Geodesist" tag="office" value="geodesist"/>
 		<icon name="Advertising agency" tag="office" value="advertising_agency"/>
 		<icon name="Educational institution" tag="office" value="educational_institution"/>
+		<icon name="Engineer office" tag="office" value="engineer"/>
 		<icon name="Religion office" tag="office" value="religion"/>
 		<icon name="Association" tag="office" value="association" icon="cooperative"/>
 		<icon name="Financial" tag="office" value="financial"/>
 		<icon name="Political party" tag="office" value="political_party"/>
+		<icon name="Property management" tag="office" value="property_management"/>
 		<icon name="Notary" tag="office" value="notary"/>
 		<icon name="Foundation" tag="office" value="foundation"/>
 		<icon name="Tax advisor" tag="office" value="tax_advisor"/>

@@ -66,10 +66,9 @@
 		  With "Hike Bike Map (Hills Underlay)" it becomes hard to distinguish between black lines (path) and brown lines (track).
 		  For this reason tracks are rendered with higher strokewidth than paths,
 		  respectively as solid lines (all tracktypes), while paths are rendered as dashed lines (Alpine Hiking Mode).
-		- Roads: German map style
 
 		Legend:
-		1) Alpine Hiking Mode (advanced settings / Alpine Hiking enabled)
+		1) Alpine Hiking Mode (SAC or CAI enabled)
 		- Paths are colored by sac_scale:
 			black dashed line: sac_scale not specified or sac_scale = hiking
 			red solid line:    sac_scale = mountain_hiking
@@ -78,7 +77,6 @@
 			blue dashed line:  sac_scale = demanding_alpine_hiking
 			blue dotted line:  sac_scale = difficult_alpine_hiking
 		- Tracks (all tracktypes) are rendered as brown solid lines
-
 		2) Other Modes
 		- Tracks are rendered as thick brown lines:
 			solid line:                             tracktype = grade1
@@ -675,7 +673,6 @@
 	<polygon>
 		<!-- Polygon highways -->
 		<switch>
-			<case tag="highway" value="road"/>
 			<case tag="highway" value="unclassified"/>
 			<case tag="highway" value="residential"/>
 			<apply color="$residentialRoadColor" color_2="$shadowColorDay" minzoom="12" strokeWidth_2=":1">
@@ -736,18 +733,23 @@
 							<case minzoom="15" maxzoom="15" strokeWidth="5" strokeWidth_0="15"/>
 							<case minzoom="16" strokeWidth="6.7" strokeWidth_0="20"/>
 							<!-- Tunnels and bridges -->
-							<apply_if layer="-1" minzoom="14" pathEffect="6_6" cap="BUTT" pathEffect_0="6_6" color__1="#000000" pathEffect__1="6_6">
-								<case baseAppMode="car">
-									<case minzoom="14" maxzoom="14" strokeWidth__1="18:4"/>
-									<case minzoom="15" maxzoom="15" strokeWidth__1="24:4"/>
-									<case minzoom="16" strokeWidth__1="30:4"/>
-								</case>
-								<case minzoom="14" maxzoom="14" strokeWidth__1="12:4"/>
-								<case minzoom="15" maxzoom="15" strokeWidth__1="15:4"/>
-								<case minzoom="16" strokeWidth__1="20:4"/>
-								<apply_if nightMode="true" color__1="#ffffff"/>
-							</apply_if>
-							<apply_if layer="1" color__1="#000000" cap_0="BUTT" cap="SQUARE">
+							<apply>
+								<switch minzoom="14">
+									<case additional="tunnel=yes"/>
+									<case additional="covered=yes"/>
+									<apply pathEffect="6_6" cap="BUTT" pathEffect_0="6_6" color__1="#000000" pathEffect__1="6_6"/>
+									<apply_if minzoom="14" maxzoom="14" strokeWidth__1="12:4"/>
+									<apply_if minzoom="15" maxzoom="15" strokeWidth__1="15:4"/>
+									<apply_if minzoom="16" strokeWidth__1="20:4"/>
+									<apply_if baseAppMode="car">
+										<apply_if minzoom="14" maxzoom="14" strokeWidth__1="18:4"/>
+										<apply_if minzoom="15" maxzoom="15" strokeWidth__1="24:4"/>
+										<apply_if minzoom="16" strokeWidth__1="30:4"/>
+									</apply_if>
+									<apply_if nightMode="true" color__1="#ffffff"/>
+								</switch>
+							</apply>
+							<apply_if additional="bridge=yes" color__1="#000000" cap_0="BUTT" cap="SQUARE">
 								<case baseAppMode="car">
 									<case minzoom="14" maxzoom="14" strokeWidth__1="18:4"/>
 									<case minzoom="15" maxzoom="15" strokeWidth__1="24:4"/>
@@ -780,13 +782,18 @@
 							<case minzoom="15" maxzoom="15" strokeWidth="6" strokeWidth_0="12"/>
 							<case minzoom="16" strokeWidth="7" strokeWidth_0="14"/>
 							<!-- Tunnels and bridges -->
-							<apply_if layer="-1" minzoom="14" pathEffect="4_4" cap="BUTT" pathEffect_0="4_4" color__1="#000000" pathEffect__1="4_4">
-								<case minzoom="14" maxzoom="14" strokeWidth__1="10:4"/>
-								<case minzoom="15" maxzoom="15" strokeWidth__1="12:4"/>
-								<case minzoom="16" strokeWidth__1="14:4"/>
-								<apply_if nightMode="true" color__1="#ffffff"/>
-							</apply_if>
-							<apply_if layer="1" color__1="#000000" cap_0="BUTT" cap="SQUARE">
+							<apply>
+								<switch minzoom="14">
+									<case additional="tunnel=yes"/>
+									<case additional="covered=yes"/>
+									<apply pathEffect="4_4" cap="BUTT" pathEffect_0="4_4" color__1="#000000" pathEffect__1="4_4"/>
+									<apply_if minzoom="14" maxzoom="14" strokeWidth__1="10:4"/>
+									<apply_if minzoom="15" maxzoom="15" strokeWidth__1="12:4"/>
+									<apply_if minzoom="16" strokeWidth__1="14:4"/>
+									<apply_if nightMode="true" color__1="#ffffff"/>
+								</switch>
+							</apply>
+							<apply_if additional="bridge=yes" color__1="#000000" cap_0="BUTT" cap="SQUARE">
 								<case minzoom="14" maxzoom="14" strokeWidth__1="10:4"/>
 								<case minzoom="15" maxzoom="15" strokeWidth__1="12:4"/>
 								<case minzoom="16" strokeWidth__1="14:4"/>
@@ -826,20 +833,25 @@
 							<case minzoom="16" maxzoom="16" strokeWidth="15"/>
 							<case minzoom="17" strokeWidth="20"/>
 							<!-- Tunnels and bridges -->
-							<apply_if layer="-1" minzoom="14" pathEffect="4_4" color_0="#000000" pathEffect_0="4_4" shadowRadius=":0" cap="BUTT">
-								<case baseAppMode="car">
-									<case minzoom="14" maxzoom="14" strokeWidth_0="14:4"/>
-									<case minzoom="15" maxzoom="15" strokeWidth_0="18:4"/>
-									<case minzoom="16" maxzoom="16" strokeWidth_0="23:4"/>
-									<case minzoom="17" strokeWidth_0="27:4"/>
-								</case>
-								<case minzoom="14" maxzoom="14" strokeWidth_0="9:4"/>
-								<case minzoom="15" maxzoom="15" strokeWidth_0="12:4"/>
-								<case minzoom="16" maxzoom="16" strokeWidth_0="15:4"/>
-								<case minzoom="17" strokeWidth_0="20:4"/>
-								<apply_if nightMode="true" color_0="#ffffff"/>
-							</apply_if>
-							<apply_if layer="1" color_0="#000000" shadowRadius=":0" cap_0="BUTT" cap="SQUARE">
+							<apply>
+								<switch minzoom="14">
+									<case additional="tunnel=yes"/>
+									<case additional="covered=yes"/>
+									<apply pathEffect="4_4" color_0="#000000" pathEffect_0="4_4" shadowRadius=":0" cap="BUTT"/>
+									<apply_if minzoom="14" maxzoom="14" strokeWidth_0="9:4"/>
+									<apply_if minzoom="15" maxzoom="15" strokeWidth_0="12:4"/>
+									<apply_if minzoom="16" maxzoom="16" strokeWidth_0="15:4"/>
+									<apply_if minzoom="17" strokeWidth_0="20:4"/>
+									<apply_if baseAppMode="car">
+										<apply_if minzoom="14" maxzoom="14" strokeWidth_0="14:4"/>
+										<apply_if minzoom="15" maxzoom="15" strokeWidth_0="18:4"/>
+										<apply_if minzoom="16" maxzoom="16" strokeWidth_0="23:4"/>
+										<apply_if minzoom="17" strokeWidth_0="27:4"/>
+									</apply_if>
+									<apply_if nightMode="true" color_0="#ffffff"/>
+								</switch>
+							</apply>
+							<apply_if additional="bridge=yes" color_0="#000000" shadowRadius=":0" cap_0="BUTT" cap="SQUARE">
 								<case baseAppMode="car">
 									<case minzoom="14" maxzoom="14" strokeWidth_0="14:4"/>
 									<case minzoom="15" maxzoom="15" strokeWidth_0="18:4"/>
@@ -886,20 +898,25 @@
 							<case minzoom="16" maxzoom="16" strokeWidth="14"/>
 							<case minzoom="17" strokeWidth="19"/>
 							<!-- Tunnels and bridges -->
-							<apply_if layer="-1" minzoom="14" pathEffect="4_4" color_0="#000000" pathEffect_0="4_4" shadowRadius=":0" cap="BUTT">
-								<case baseAppMode="car">
-									<case minzoom="14" maxzoom="14" strokeWidth_0="12:4"/>
-									<case minzoom="15" maxzoom="15" strokeWidth_0="17:4"/>
-									<case minzoom="16" maxzoom="16" strokeWidth_0="22:4"/>
-									<case minzoom="17" strokeWidth_0="26:4"/>
-								</case>
-								<case minzoom="14" maxzoom="14" strokeWidth_0="8:4"/>
-								<case minzoom="15" maxzoom="15" strokeWidth_0="10:4"/>
-								<case minzoom="16" maxzoom="16" strokeWidth_0="14:4"/>
-								<case minzoom="17" strokeWidth_0="19:4"/>
-								<apply_if nightMode="true" color_0="#ffffff"/>
-							</apply_if>
-							<apply_if layer="1" color_0="#000000" shadowRadius=":0" cap_0="BUTT" cap="SQUARE">
+							<apply>
+								<switch minzoom="14">
+									<case additional="tunnel=yes"/>
+									<case additional="covered=yes"/>
+									<apply pathEffect="4_4" color_0="#000000" pathEffect_0="4_4" shadowRadius=":0" cap="BUTT"/>
+									<apply_if minzoom="14" maxzoom="14" strokeWidth_0="8:4"/>
+									<apply_if minzoom="15" maxzoom="15" strokeWidth_0="10:4"/>
+									<apply_if minzoom="16" maxzoom="16" strokeWidth_0="14:4"/>
+									<apply_if minzoom="17" strokeWidth_0="19:4"/>
+									<apply_if baseAppMode="car">
+										<apply_if minzoom="14" maxzoom="14" strokeWidth_0="12:4"/>
+										<apply_if minzoom="15" maxzoom="15" strokeWidth_0="17:4"/>
+										<apply_if minzoom="16" maxzoom="16" strokeWidth_0="22:4"/>
+										<apply_if minzoom="17" strokeWidth_0="26:4"/>
+									</apply_if>
+									<apply_if nightMode="true" color_0="#ffffff"/>
+								</switch>
+							</apply>
+							<apply_if additional="bridge=yes" color_0="#000000" shadowRadius=":0" cap_0="BUTT" cap="SQUARE">
 								<case baseAppMode="car">
 									<case minzoom="14" maxzoom="14" strokeWidth_0="12:4"/>
 									<case minzoom="15" maxzoom="15" strokeWidth_0="17:4"/>
@@ -921,7 +938,7 @@
 					<apply_if minzoom="17" maxzoom="17" strokeWidth_2="5:5" strokeWidth_3="5:5"/>
 					<apply_if minzoom="18" maxzoom="18" strokeWidth_2="6:6" strokeWidth_3="6:6"/>
 					<apply_if minzoom="19" strokeWidth_2="7:7" strokeWidth_3="7:7"/>
-					<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
+					<apply_if engine_v1="false" minzoom="16"> <!-- for new OpenGL engine only -->
 						<apply_if additional="oneway=yes" pathIcon="oneway_black_semitransparent_big" pathIconStep="70"/>
 						<apply_if additional="oneway=-1" pathIcon="oneway_reverse_black_semitransparent_big" pathIconStep="70"/>
 					</apply_if>
@@ -957,20 +974,25 @@
 							<case minzoom="16" maxzoom="16" strokeWidth="13"/>
 							<case minzoom="17" strokeWidth="18"/>
 							<!-- Tunnels and bridges -->
-							<apply_if layer="-1" minzoom="14" pathEffect="4_4" color_0="#000000" pathEffect_0="4_4" shadowRadius=":0" cap="BUTT">
-								<case baseAppMode="car">
-									<case minzoom="14" maxzoom="14" strokeWidth_0="8:4"/>
-									<case minzoom="15" maxzoom="15" strokeWidth_0="16:4"/>
-									<case minzoom="16" maxzoom="16" strokeWidth_0="22:4"/>
-									<case minzoom="17" strokeWidth_0="26:4"/>
-								</case>
-								<case minzoom="14" maxzoom="14" strokeWidth_0="6:4"/>
-								<case minzoom="15" maxzoom="15" strokeWidth_0="8:4"/>
-								<case minzoom="16" maxzoom="16" strokeWidth_0="13:4"/>
-								<case minzoom="17" strokeWidth_0="18:4"/>
-								<apply_if nightMode="true" color_0="#ffffff"/>
-							</apply_if>
-							<apply_if layer="1" color_0="#000000" shadowRadius=":0" cap_0="BUTT" cap="SQUARE">
+							<apply>
+								<switch minzoom="14">
+									<case additional="tunnel=yes"/>
+									<case additional="covered=yes"/>
+									<apply pathEffect="4_4" color_0="#000000" pathEffect_0="4_4" shadowRadius=":0" cap="BUTT"/>
+									<apply_if minzoom="14" maxzoom="14" strokeWidth_0="6:4"/>
+									<apply_if minzoom="15" maxzoom="15" strokeWidth_0="8:4"/>
+									<apply_if minzoom="16" maxzoom="16" strokeWidth_0="13:4"/>
+									<apply_if minzoom="17" strokeWidth_0="18:4"/>
+									<apply_if baseAppMode="car">
+										<apply_if minzoom="14" maxzoom="14" strokeWidth_0="8:4"/>
+										<apply_if minzoom="15" maxzoom="15" strokeWidth_0="16:4"/>
+										<apply_if minzoom="16" maxzoom="16" strokeWidth_0="22:4"/>
+										<apply_if minzoom="17" strokeWidth_0="26:4"/>
+									</apply_if>
+									<apply_if nightMode="true" color_0="#ffffff"/>
+								</switch>
+							</apply>
+							<apply_if additional="bridge=yes" color_0="#000000" shadowRadius=":0" cap_0="BUTT" cap="SQUARE">
 								<case baseAppMode="car">
 									<case minzoom="14" maxzoom="14" strokeWidth_0="8:4"/>
 									<case minzoom="15" maxzoom="15" strokeWidth_0="16:4"/>
@@ -985,7 +1007,7 @@
 							</apply_if>
 							<apply_if nightMode="true" shadowColor="$shadowColorNight"/>
 						</apply>
-						<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
+						<apply_if engine_v1="false" minzoom="16"> <!-- for new OpenGL engine only -->
 							<apply_if maxzoom="16" additional="oneway=yes" pathIcon="oneway_black_semitransparent" pathIconStep="70"/>
 							<apply_if minzoom="17" additional="oneway=yes" pathIcon="oneway_black_semitransparent_big" pathIconStep="70"/>
 							<apply_if maxzoom="16" additional="oneway=-1" pathIcon="oneway_reverse_black_semitransparent" pathIconStep="70"/>
@@ -995,7 +1017,6 @@
 
 					<!-- The block roads/unclassified/residential copied unchanged from default renderer -->
 					<switch>
-						<case tag="highway" value="road"/>
 						<case tag="highway" value="unclassified"/>
 						<case tag="highway" value="residential"/>
 						<apply color="$residentialRoadColor" shadowRadius=":1.5" shadowColor="$shadowColorDay" cap="ROUND">
@@ -1008,10 +1029,15 @@
 								<case minzoom="17" maxzoom="17" strokeWidth="7:5"/>
 								<case minzoom="18" maxzoom="18" strokeWidth="10:8"/>
 								<case minzoom="19" strokeWidth="12:9"/>
-								<apply_if additional="tunnel=yes" pathEffect="4_4" cap="BUTT"/>
-								<apply_if additional="covered=yes" pathEffect="7_2" cap="BUTT"/>
-								<!-- Bridges -->
-								<apply_if layer="1" shadowRadius=":0" cap="SQUARE" cap_0="BUTT">
+								<!-- Tunnels and bridges -->
+								<apply>
+									<switch>
+										<case additional="tunnel=yes"/>
+										<case additional="covered=yes"/>
+										<apply pathEffect="4_4" cap="BUTT"/>
+									</switch>
+								</apply>
+								<apply_if additional="bridge=yes" shadowRadius=":0" cap="SQUARE" cap_0="BUTT">
 									<case minzoom="14" maxzoom="14" strokeWidth_0="1:8"/>
 									<case minzoom="15" maxzoom="15" strokeWidth_0="3:8"/>
 									<case minzoom="16" maxzoom="16" strokeWidth_0="5:8"/>
@@ -1028,7 +1054,7 @@
 						-->
 						</apply>
 						<apply_if baseAppMode="pedestrian" shadowColor="$shadowColorLowZoom"/> <!-- Accentuate pedestrian ways better, Issue #18807 -->
-						<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
+						<apply_if engine_v1="false" minzoom="16"> <!-- for new OpenGL engine only -->
 							<apply_if maxzoom="16" additional="oneway=yes" pathIcon="oneway_black_semitransparent" pathIconStep="70"/>
 							<apply_if minzoom="17" additional="oneway=yes" pathIcon="oneway_black_semitransparent_big" pathIconStep="70"/>
 							<apply_if maxzoom="16" additional="oneway=-1" pathIcon="oneway_reverse_black_semitransparent" pathIconStep="70"/>
@@ -1052,10 +1078,15 @@
 								<case minzoom="17" maxzoom="17" strokeWidth="4:4"/>
 								<case minzoom="18" maxzoom="18" strokeWidth="6:5"/>
 								<case minzoom="19" strokeWidth="8:6"/>
-								<apply_if additional="tunnel=yes" pathEffect="4_4" cap="BUTT"/>
-								<apply_if additional="covered=yes" pathEffect="7_2" cap="BUTT"/>
-								<!-- Bridges -->
-								<apply_if layer="1" shadowRadius=":0" cap="SQUARE" cap_0="BUTT">
+								<!-- Tunnels and bridges -->
+								<apply>
+									<switch>
+										<case additional="tunnel=yes"/>
+										<case additional="covered=yes"/>
+										<apply pathEffect="4_4" cap="BUTT"/>
+									</switch>
+								</apply>
+								<apply_if additional="bridge=yes" shadowRadius=":0" cap="SQUARE" cap_0="BUTT">
 									<case minzoom="14" maxzoom="14" strokeWidth_0="1:6"/>
 									<case minzoom="15" maxzoom="15" strokeWidth_0="2:6"/>
 									<case minzoom="16" maxzoom="16" strokeWidth_0="3:6"/>
@@ -1286,17 +1317,20 @@
 					</case>
 				</apply_if>
 
-				<!-- Bridges -->
-				<apply_if layer="1">
-					<case nightMode="true" minzoom="14" color__1="#ffffff" strokeWidth__1="4:2.5" color_0="#9F9F9F" strokeWidth_0="4:1"/>
-					<case minzoom="14" color__1="#000000" strokeWidth__1="4:2.5" color_0="#ffffff" strokeWidth_0="4:1"/>
+				<!-- Tunnels and bridges -->
+				<apply>
+					<switch minzoom="14">
+						<case additional="tunnel=yes"/>
+						<case additional="covered=yes"/>
+						<apply_if nightMode="true" color_0="#9F9F9F" strokeWidth_0="4:1" pathEffect_0="3_3" color__1="#ffffff" strokeWidth__1="4:2.5" pathEffect__1="3_3"/>
+						<apply_if color_0="#ffffff" strokeWidth_0="4:1" pathEffect_0="3_3" color__1="#000000" strokeWidth__1="4:2.5" pathEffect__1="3_3"/>
+					</switch>
+				</apply>
+				<apply_if additional="bridge=yes">
+					<case nightMode="true" minzoom="14" color_0="#9F9F9F" strokeWidth_0="4:1" color__1="#ffffff" strokeWidth__1="4:2.5"/>
+					<case minzoom="14" color_0="#ffffff" strokeWidth_0="4:1" color__1="#000000" strokeWidth__1="4:2.5"/>
 				</apply_if>
 
-				<!-- Tunnels -->
-				<apply_if layer="-1">
-					<case nightMode="true" minzoom="14" color__1="#ffffff" strokeWidth__1="4:2.5" pathEffect__1="3_3" color_0="#9F9F9F" strokeWidth_0="4:1"/>
-					<case minzoom="14" color__1="#000000" strokeWidth__1="4:2.5" pathEffect__1="3_3" color_0="#ffffff" strokeWidth_0="4:1"/>
-				</apply_if>
 				<apply_if engine_v1="false" minzoom="16"> <!-- for new OpenGL engine only -->
 					<apply_if additional="oneway=yes" pathIcon="oneway_gray_big" pathIconStep="70"/>
 					<apply_if additional="oneway=-1" pathIcon="oneway_reverse_gray_big" pathIconStep="70"/>
@@ -1318,7 +1352,7 @@
 
 			<!-- showAccess copied from default renderer to mitigate it not working with OpenGL engine. Use accessPrivateColor for any access restriction. -->
 			<apply>
-				<switch showAccess="true" minzoom="10" cap_3="ROUND">
+				<switch showAccess="true" minzoom="8" cap_3="ROUND">
 					<switch>
 						<case baseAppMode="bicycle" additional="toll:bicycle=yes" color_3="$tollColor"/>
 						<case baseAppMode="bicycle" additional="toll:bicycle=no"/>
@@ -1444,6 +1478,10 @@
 		</switch>
 
 		<case tag="highway" value="ford" minzoom="14" color="#000000" strokeWidth="2"/>
+
+		<!-- highway=road is used temporarily for unsurveyed roads -->
+		<case tag="highway" value="road" minzoom="12" maxzoom="13" color="$serviceRoadColor" strokeWidth="6" color_2="$proposedRoadColor2" strokeWidth_2="4" pathEffect_2="6_2"/>
+		<case tag="highway" value="road" minzoom="14" color="$serviceRoadColor" strokeWidth="8" color_2="$proposedRoadColor2" strokeWidth_2="6" pathEffect_2="9_3"/>
 
 		<case tag="highway" value="proposed" minzoom="12" maxzoom="13" color="$proposedRoadColor" strokeWidth="6" color_2="$proposedRoadColor2" strokeWidth_2="4" pathEffect_2="6_2"/>
 		<case tag="highway" value="proposed" minzoom="14" color="$proposedRoadColor" strokeWidth="8" color_2="$proposedRoadColor2" strokeWidth_2="6" pathEffect_2="9_3"/>
